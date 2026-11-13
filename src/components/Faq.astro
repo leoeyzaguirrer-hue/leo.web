@@ -3,11 +3,12 @@ import type { Pregunta } from '../data/faq';
 
 interface Props {
   items: Pregunta[];
+  variant?: 'yellow' | 'blue';
 }
-const { items } = Astro.props;
+const { items, variant = 'yellow' } = Astro.props;
 ---
 
-<div class="faq" data-reveal-group>
+<div class:list={['faq', 'faq--plus', variant === 'blue' && 'faq--blue']} data-reveal-group>
   {
     items.map((item) => (
       <details>

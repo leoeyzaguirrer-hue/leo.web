@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
 import Cta from '../components/Cta.astro';
 import Faq from '../components/Faq.astro';
 import { waMessages } from '../config/site';
@@ -15,31 +16,66 @@ const schema = {
     acceptedAnswer: { '@type': 'Answer', text: p.a },
   })),
 };
+// El consentimiento informado tiene su propio bloque destacado.
+const pagos = sesionesYPagos.filter((p) => !p.q.toLowerCase().includes('consentimiento'));
 ---
 
 <Base
   title="Preguntas frecuentes"
-  description="Respuestas a las dudas más habituales sobre la primera sesión, la terapia online, las modalidades y los pagos."
+  description="Respuestas a las dudas más habituales sobre la primera sesión, la terapia online, las modalidades, los pagos y el consentimiento informado."
   schema={[schema]}
 >
   <PageHero
-    eyebrow="Preguntas frecuentes"
-    title="Dudas habituales"
-    lead="Es normal llegar con dudas o algo de nervios. Aquí respondo las preguntas más frecuentes."
-  />
+    eyebrow="07 · Dudas"
+    title="Preguntas frecuentes"
+    bg="blue"
+    lead="Es normal llegar con dudas o algo de nervios. Aquí respondo las preguntas más frecuentes. Toca cada pregunta para ver la respuesta."
+  >
+    <div class="phero__chips">
+      <a href="#primera">Tu primera sesión</a>
+      <a href="#pagos">Sesiones y pagos</a>
+      <a href="#consentimiento">Consentimiento informado</a>
+    </div>
+  </PageHero>
 
-  <section class="section">
-    <div class="wrap wrap--narrow stack stack--lg">
-      <div class="stack">
-        <h2 class="h2" data-reveal>Tu primera sesión</h2>
-        <Faq items={primeraSesion} />
+  <section class="sec bg-dots" id="primera">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <span class="hxb hx-yellow" aria-hidden="true"></span>
+        <h2 class="h2 h2--xl">Tu primera sesión</h2>
+        <p class="txt">Lo que suele preguntarse antes de empezar.</p>
       </div>
-      <div class="stack">
-        <h2 class="h2" data-reveal>Sesiones, modalidades y pagos</h2>
-        <Faq items={sesionesYPagos} />
+      <div class="split__wide"><Faq items={primeraSesion} /></div>
+    </div>
+  </section>
+
+  <section class="sec bg-tint" id="pagos">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <span class="hxb hx-blue" aria-hidden="true"></span>
+        <h2 class="h2 h2--xl">Sesiones y pagos</h2>
+        <p class="txt">Duración, modalidades y formas de pago. <a href="/tarifas">Ver tarifas</a></p>
+      </div>
+      <div class="split__wide"><Faq items={pagos} variant="blue" /></div>
+    </div>
+  </section>
+
+  <section class="sec sec--sm bg-navy" id="consentimiento">
+    <div class="wrap callout" data-reveal>
+      <span class="hxb hxb--lg hx-yellow" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"></path><path d="M14 3v5h5"></path><path d="m9 14 2 2 4-4"></path></svg>
+      </span>
+      <div>
+        <p class="kicker kicker--light">Antes de empezar</p>
+        <h2 class="h2 h2--xl h2--light">Consentimiento informado</h2>
+        <p class="txt txt--light">
+          Es un documento breve que explica cómo funciona la terapia: sus objetivos, la confidencialidad y sus límites, los honorarios y tus
+          derechos como consultante. Lo revisamos juntos y lo firmas antes de iniciar: <strong class="text-yellow">es un requisito para comenzar la terapia.</strong>
+        </p>
       </div>
     </div>
   </section>
 
+  <Pager />
   <Cta title="¿Tienes otra pregunta?" text="Escríbeme y la conversamos." message={waMessages.general} />
 </Base>

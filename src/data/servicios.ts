@@ -1,4 +1,4 @@
-// Contenido de la carta de presentación (página /servicios).
+// Contenido de la carta de presentación (páginas /quien-soy, /como-trabajo, /enfoques y /proceso).
 
 export const secciones = [
   { id: 'quien-soy', label: 'Quién soy' },

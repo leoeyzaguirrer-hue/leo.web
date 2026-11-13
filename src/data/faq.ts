@@ -1,4 +1,4 @@
-// Preguntas frecuentes. Se usan en /servicios, /preguntas-frecuentes y en los datos estructurados.
+// Preguntas frecuentes. Se usan en /preguntas-frecuentes y en los datos estructurados.
 
 export interface Pregunta {
   q: string;

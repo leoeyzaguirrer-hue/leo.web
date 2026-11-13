@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
+import Cta from '../components/Cta.astro';
+import { waMessages } from '../config/site';
+import { enfoques } from '../data/servicios';
+
+const cabeceras = [
+  { head: 'ecard__head--navy', sigla: 'hx-yellow' },
+  { head: 'ecard__head--blue', sigla: 'hx-white' },
+  { head: 'ecard__head--yellow', sigla: 'hx-navy' },
+  { head: 'ecard__head--deep', sigla: 'hx-yellow' },
+];
+---
+
+<Base
+  title="Enfoques"
+  description="Terapia de Aceptación y Compromiso (ACT), Psicoterapia Analítica Funcional (FAP), Activación Conductual (AC) y Terapia Dialéctico Conductual (DBT)."
+  waMessage={waMessages.agendar}
+>
+  <PageHero
+    eyebrow="03 · Modelos"
+    title="Los enfoques con los que trabajo"
+    crumb="Enfoques"
+    bg="blue"
+    lead="Trabajo con modelos que cuentan con respaldo científico. No necesitas elegir uno: tras la evaluación inicial te propongo el que mejor se ajusta a ti."
+  />
+
+  <section class="sec bg-dots">
+    <div class="wrap stack stack--lg">
+      <div class="cards cards--wide" data-reveal-group>
+        {
+          enfoques.map((e, i) => (
+            <article class="ecard">
+              <div class:list={['ecard__head', cabeceras[i % 4].head]}>
+                <span class:list={['hxb', 'hxb--lg', cabeceras[i % 4].sigla]}>{e.sigla}</span>
+                <h2>{e.nombre}</h2>
+              </div>
+              <div class="ecard__body">
+                <p><strong>Útil para:</strong> {e.util}</p>
+                <p><strong>Cómo funciona:</strong> {e.como}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <div class="note note--cream" data-reveal>
+        <span class="hxb hxb--sm hx-navy" aria-hidden="true">i</span>
+        <p><strong>Sobre DBT:</strong> la ofrezco solo cuando una evaluación precisa muestra que es lo indicado, ya que requiere un compromiso intenso y sostenido.</p>
+      </div>
+    </div>
+  </section>
+
+  <Pager />
+  <Cta />
+</Base>

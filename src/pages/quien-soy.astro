@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import retrato from '../assets/leo-retrato.jpg';
+import { site, waMessages } from '../config/site';
+import { pilares, queHace, formacion } from '../data/servicios';
+
+const colores = ['hx-navy', 'hx-blue', 'hx-yellow'];
+const puntos = ['hexdot--navy', 'hexdot--blue', ''];
+---
+
+<Base
+  title="Quién soy"
+  description="Leonardo Eyzaguirre, psicólogo y psicoterapeuta especializado en terapias conductuales-contextuales: la base científica de mi trabajo y mi formación."
+  waMessage={waMessages.agendar}
+>
+  <PageHero eyebrow="01 · Presentación" title="¿Quién soy?" crumb="Quién soy" bg="yellow">
+    <p class="lead">
+      ¡Mucho gusto! Soy Leonardo Eyzaguirre, aunque puedes decirme <strong>Leo</strong>. Soy psicólogo y psicoterapeuta especializado en{' '}
+      <strong>terapias conductuales-contextuales</strong>, también conocidas como terapias de tercera generación.
+    </p>
+    <div class="hexphoto" slot="media">
+      <div class="hexphoto__accent" aria-hidden="true"></div>
+      <div class="hexphoto__frame" aria-hidden="true"></div>
+      <Image src={retrato} alt="Retrato de Leo Eyzaguirre" width={400} height={450} loading="eager" />
+    </div>
+  </PageHero>
+
+  <section class="sec bg-graph">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">La base de mi trabajo</p>
+        <h2 class="h2 h2--xl">Dos pilares de la ciencia del comportamiento</h2>
+        <p class="txt">Más allá del enfoque que usemos en cada caso, todo mi trabajo se apoya en dos pilares de la ciencia del comportamiento:</p>
+      </div>
+      <div class="cards cards--wide" data-reveal-group>
+        {
+          pilares.map((p, i) => (
+            <article class:list={['pillar', i === 1 && 'pillar--blue']}>
+              <span class:list={['hxb', i === 1 ? 'hx-white' : 'hx-yellow']} aria-hidden="true" />
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-dots">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">En la práctica</p>
+        <h2 class="h2 h2--xl">¿Qué hace un terapeuta conductual-contextual?</h2>
+        <p class="txt">Creo en una terapia cálida y rigurosa a la vez: cercana en el trato, exigente con la evidencia.</p>
+      </div>
+      <ol class="qlist split__wide" data-reveal-group>
+        {
+          queHace.map((q, i) => (
+            <li>
+              <span class:list={['hxb', 'hxb--sm', colores[i % 3]]} aria-hidden="true">{i + 1}</span>
+              <span>{q}</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec bg-tint">
+    <div class="wrap">
+      <div class="sec__head sec__head--split" data-reveal>
+        <div>
+          <p class="kicker">Trayectoria</p>
+          <h2 class="h2 h2--xl">Mi formación y experiencia</h2>
+        </div>
+        <p><a class="btn btn--blue" href="/hoja-de-vida">Ver hoja de vida completa <Icon name="arrow" size={18} /></a></p>
+      </div>
+      <ul class="fgrid" data-reveal-group>
+        {
+          formacion.map((f, i) => (
+            <li>
+              <span class:list={['hexdot', puntos[i % 3]]} aria-hidden="true" />
+              <span>
+                <b>{f.titulo}</b>
+                <span>{f.detalle}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="note note--cream mt" data-reveal>
+        <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+        <p>
+          También comparto contenido sobre psicología contextual en Instagram:{' '}
+          {
+            site.instagram.map((ig, i) => (
+              <>
+                {i > 0 && ' y '}
+                <a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}</a>
+              </>
+            ))
+          }.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Pager />
+  <Cta />
+</Base>

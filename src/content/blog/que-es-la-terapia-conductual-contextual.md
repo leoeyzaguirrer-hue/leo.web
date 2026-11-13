@@ -21,4 +21,4 @@ La **Teoría de los Marcos Relacionales (RFT)** es una teoría científica sobre
 - Relacionarte de otra forma con pensamientos y emociones difíciles, y elegir hacia dónde moverte.
 - Usar herramientas prácticas, estudiadas en investigación científica y ajustadas a tu situación.
 
-Si quieres saber cómo se traduce esto en un proceso concreto, puedes ver [cómo trabajo](/servicios) o escribirme directamente.
+Si quieres saber cómo se traduce esto en un proceso concreto, puedes ver [cómo trabajo](/como-trabajo) o escribirme directamente.

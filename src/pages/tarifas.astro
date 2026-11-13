@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
 import Cta from '../components/Cta.astro';
 import Icon from '../components/Icon.astro';
 import WhatsAppIcon from '../components/WhatsAppIcon.astro';
@@ -13,26 +14,25 @@ import { tarifas } from '../data/tarifas';
   description="Tarifas de psicoterapia individual: 250 Bs por sesión en Bolivia y 35 USD desde el exterior. Paquetes de 4 y 6 sesiones."
   waMessage={waMessages.agendar}
 >
-  <PageHero eyebrow="Tarifas" title="Inversión en tu proceso" lead="Sesiones de alrededor de 1 hora, presenciales u online.">
-    <div><span class="chip chip--dark">Psicoterapia individual</span></div>
-  </PageHero>
+  <PageHero
+    eyebrow="05 · Psicoterapia individual"
+    title="Inversión en tu proceso"
+    crumb="Tarifas"
+    bg="yellow"
+    lead="Sesiones de alrededor de 1 hora, presenciales u online."
+  />
 
-  <section class="section--tight">
-    <div class="wrap stack pull-up">
-      <div class="grid grid--2" data-reveal-group>
+  <section class="sec bg-dots">
+    <div class="wrap stack stack--lg">
+      <div class="cards cards--wide" data-reveal-group>
         {
-          tarifas.map((t) => (
-            <section class="card price" data-tilt>
-              <div class="price__head">
-                <Icon name={t.icono} size={26} />
-                <h2 class="h3">{t.titulo}</h2>
+          tarifas.map((t, i) => (
+            <section class="tcard">
+              <div class:list={['tcard__head', i === 1 && 'tcard__head--blue']}>
+                <h2><Icon name={t.icono} size={24} /> {t.titulo}</h2>
+                <p class="tcard__price"><b>{t.precio}</b><span>por sesión</span></p>
               </div>
-              <div class="price__amount">
-                <b>{t.precio}</b>
-                <span>por sesión</span>
-              </div>
-              <div class="rule" />
-              <div class="stack">
+              <div class="tcard__body">
                 <span class="label">Paquetes</span>
                 {t.paquetes.map((p) => (
                   <div class="row">
@@ -40,35 +40,33 @@ import { tarifas } from '../data/tarifas';
                     <strong>{p.precio}</strong>
                   </div>
                 ))}
+                <p><strong>Formas de pago:</strong> {t.pago}</p>
+                <a class:list={['btn', i === 1 ? 'btn--blue' : 'btn--primary']} href={whatsappUrl(waMessages[t.mensaje])} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon size={22} /> {i === 1 ? 'Agendar desde el exterior' : 'Agendar en Bolivia'}
+                </a>
               </div>
-              <p>
-                <strong>Formas de pago:</strong> {t.pago}
-              </p>
-              <a class="btn btn--wa" href={whatsappUrl(waMessages[t.mensaje])} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon size={22} /> Agendar por WhatsApp
-              </a>
             </section>
           ))
         }
       </div>
 
-      <div class="note" data-reveal>
-        <span class="hexdot hexdot--blue hexdot--lg" aria-hidden="true"></span>
-        <p>
-          <strong>¿Por qué un paquete?</strong> Si quieres comprometerte con un proceso continuo, los paquetes te permiten asegurar tus
-          sesiones a un precio menor.
-        </p>
-      </div>
-      <div class="note note--cream" data-reveal>
-        <span class="hexdot hexdot--lg" aria-hidden="true"></span>
-        <p><strong>Importante:</strong> todos los pagos se realizan un día antes o el mismo día de la sesión.</p>
+      <div class="cards cards--wide" data-reveal-group>
+        <div class="note">
+          <span class="hxb hxb--sm hx-blue" aria-hidden="true"></span>
+          <p><strong>¿Por qué un paquete?</strong> Si quieres comprometerte con un proceso continuo, los paquetes te permiten asegurar tus sesiones a un precio menor.</p>
+        </div>
+        <div class="note note--cream">
+          <span class="hxb hxb--sm hx-navy" aria-hidden="true">!</span>
+          <p><strong>Importante:</strong> todos los pagos se realizan un día antes o el mismo día de la sesión.</p>
+        </div>
       </div>
 
-      <p class="center mt" data-reveal>
-        <a class="link-arrow" href="/servicios#proceso">Conoce cómo es el proceso <Icon name="arrow" size={18} /></a>
+      <p class="center" data-reveal>
+        <a class="link-arrow" href="/preguntas-frecuentes">¿Dudas sobre pagos o modalidades? Revisa las preguntas frecuentes <Icon name="arrow" size={18} /></a>
       </p>
     </div>
   </section>
 
+  <Pager />
   <Cta />
 </Base>

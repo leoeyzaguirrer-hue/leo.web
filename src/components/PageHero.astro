@@ -3,18 +3,26 @@ interface Props {
   eyebrow: string;
   title: string;
   lead?: string;
+  /** Fondo de la portada: cada sección tiene el suyo para distinguirse. */
+  bg?: 'navy' | 'deep' | 'blue' | 'yellow';
+  /** Texto de la miga de pan (por defecto, el título). */
+  crumb?: string;
 }
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, bg = 'blue', crumb = title } = Astro.props;
+const hasMedia = Astro.slots.has('media');
 ---
 
-<section class="page-hero bg-blue">
-  <div class="wrap">
-    <div class="page-hero__inner">
+<section class:list={['phero', `bg-${bg}`, bg === 'yellow' && 'phero--yellow']}>
+  <div class="wrap phero__inner">
+    <div class="phero__text">
+      <p class="crumbs"><a href="/">Inicio</a> <span aria-hidden="true">/</span> {crumb}</p>
       <p class="eyebrow">{eyebrow}</p>
       <h1 class="h1 h1--page">{title}</h1>
       {lead && <p class="lead">{lead}</p>}
       <slot />
     </div>
+    {hasMedia && <div class="phero__media"><slot name="media" /></div>}
   </div>
+  <slot name="after" />
+  <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
 </section>
-<div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>

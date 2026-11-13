@@ -2,9 +2,10 @@
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
 import Cta from '../components/Cta.astro';
 import Icon from '../components/Icon.astro';
-import Timeline from '../components/Timeline.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import retrato from '../assets/leo-retrato.jpg';
 import { site, whatsappUrl, waMessages } from '../config/site';
 import {
@@ -19,6 +20,8 @@ import {
   conferencias,
   membresias,
 } from '../data/cv';
+
+const chipColor = (i: number) => (i < 3 ? 'hx-navy' : i < 5 ? 'hx-blue' : 'hx-yellow');
 ---
 
 <Base
@@ -26,102 +29,187 @@ import {
   description="Hoja de vida de Leonardo Eyzaguirre Rojas, psicoterapeuta conductual-contextual: formación, experiencia clínica, docencia, cursos y actividad académica."
   waMessage={waMessages.general}
 >
-  <PageHero eyebrow="Hoja de vida" title="Leonardo Eyzaguirre Rojas" lead="Psicoterapeuta Conductual-Contextual">
+  <PageHero eyebrow="06 · Hoja de vida" title="Leonardo Eyzaguirre Rojas" crumb="Hoja de vida" bg="deep" lead="Psicoterapeuta Conductual-Contextual">
+    <div class="phero__chips">
+      <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{site.whatsappDisplay}</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      {site.instagram.map((ig) => <a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}</a>)}
+      <span>{site.address.full}</span>
+      <span>{idiomas.map((i) => `${i.idioma} ${i.nivel.toLowerCase()}`).join(' · ')}</span>
+    </div>
     <div class="btn-row no-print">
       <button class="btn btn--primary" type="button" data-print><Icon name="print" size={20} /> Imprimir o guardar en PDF</button>
-      <a class="btn btn--ghost" href="/servicios">Ver servicios <Icon name="arrow" size={18} /></a>
     </div>
+    <div class="hexphoto" slot="media">
+      <div class="hexphoto__accent hexphoto__accent--yellow" aria-hidden="true"></div>
+      <div class="hexphoto__frame" aria-hidden="true"></div>
+      <Image src={retrato} alt="Foto de Leonardo Eyzaguirre Rojas" width={400} height={450} loading="eager" />
+    </div>
+    <nav class="subtoc" slot="after" aria-label="Secciones de la hoja de vida">
+      <div class="wrap subtoc__list">
+        <a href="#perfil">Perfil</a>
+        <a href="#formacion">Formación académica</a>
+        <a href="#clinica">Práctica clínica</a>
+        <a href="#docencia">Docencia</a>
+        <a href="#cursos">Cursos y entrenamientos</a>
+        <a href="#academica">Actividad académica</a>
+        <a href="#profesionales">Para profesionales</a>
+      </div>
+    </nav>
   </PageHero>
 
-  <section class="section">
-    <div class="wrap cv">
-      <aside class="cv__side" data-reveal="left">
-        <div class="cv__photo">
-          <Image src={retrato} alt="Foto de Leonardo Eyzaguirre Rojas" width={336} height={380} loading="eager" />
-        </div>
-        <div>
-          <p class="cv__name">Leonardo<br />Eyzaguirre Rojas</p>
-          <p class="cv__role">Psicoterapeuta<br />Conductual-Contextual</p>
-        </div>
-        <section>
-          <h2>Contacto</h2>
-          <ul class="cv__contact">
-            <li>
-              <Icon name="phone" size={16} />
-              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{site.whatsappDisplay}</a>
-            </li>
-            <li><Icon name="mail" size={16} /><a href={`mailto:${site.email}`}>{site.email}</a></li>
-            <li><Icon name="pin" size={16} /><span>{site.address.full}</span></li>
-            <li>
-              <Icon name="instagram" size={16} />
-              <span>
-                {site.instagram.map((ig) => <a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}<br /></a>)}
-              </span>
-            </li>
+  <section class="sec bg-white" id="perfil">
+    <div class="wrap split">
+      <div class="split__wide stack">
+        <p class="kicker" data-reveal>Perfil profesional</p>
+        {perfil.map((p, i) => <p class:list={['txt', i === 0 && 'cv-lead']} data-reveal>{p}</p>)}
+      </div>
+      <div class="stack" data-reveal-group>
+        <div class="box">
+          <h2>Enfoques</h2>
+          <ul class="cvchips">
+            {enfoquesCv.map((e, i) => <li class={chipColor(i)}>{e}</li>)}
           </ul>
-        </section>
-        <section>
+        </div>
+        <div class="box box--ivory">
           <h2>Idiomas</h2>
-          {idiomas.map((i) => <div class="cv__lang"><b>{i.idioma}</b><span>{i.nivel}</span></div>)}
-        </section>
-      </aside>
-
-      <div class="cv__main">
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Perfil profesional</h2>
-          <div class="stack mt" data-reveal-group>
-            {perfil.map((p) => <p>{p}</p>)}
-          </div>
-        </section>
-
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Enfoques</h2>
-          <ul class="chips mt" data-reveal-group>
-            {enfoquesCv.map((e) => <li class="chip">{e}</li>)}
-          </ul>
-        </section>
-
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Formación académica</h2>
-          <Timeline items={formacionAcademica} />
-        </section>
-
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Experiencia profesional</h2>
-          <h3 class="cv__h3">Práctica clínica</h3>
-          <Timeline items={practicaClinica} />
-          <h3 class="cv__h3">Docencia universitaria y posgrado</h3>
-          <Timeline items={docencia} />
-        </section>
-
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Cursos y entrenamientos</h2>
-          <ul class="courses" data-reveal-group>
-            {
-              cursos.map((c) => (
-                <li class="course">
-                  <b>{c.titulo}</b>
-                  <span>
-                    {c.lugar} · <strong>{c.dato}</strong>
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-
-        <section>
-          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Actividad académica</h2>
-          <h3 class="cv__h3">Organización de eventos</h3>
-          <Timeline items={eventos} />
-          <h3 class="cv__h3">Conferencias y talleres impartidos</h3>
-          <Timeline items={conferencias} />
-          <h3 class="cv__h3">Membresías</h3>
-          <Timeline items={membresias} />
-        </section>
+          {idiomas.map((i) => <div class="cv__lang"><span>{i.idioma}</span><b>{i.nivel}</b></div>)}
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="sec bg-dots" id="formacion">
+    <div class="wrap narrow">
+      <div class="cvhead" data-reveal><span class="hxb hx-navy" aria-hidden="true"></span><h2>Formación académica</h2></div>
+      <ol class="tl" data-reveal-group>
+        {
+          formacionAcademica.map((it) => (
+            <li>
+              {it.fecha && <span class="pill">{it.fecha}</span>}
+              <h3>{it.titulo}</h3>
+              <p>{it.lugar}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec bg-graph line-top" id="clinica">
+    <div class="wrap narrow">
+      <p class="kicker" data-reveal>Experiencia profesional</p>
+      <div class="cvhead mt" data-reveal><span class="hxb hx-blue" aria-hidden="true"></span><h2>Práctica clínica</h2></div>
+      <ol class="tl tl--blue" data-reveal-group>
+        {
+          practicaClinica.map((it) => (
+            <li>
+              {it.fecha && <span class="pill">{it.fecha}</span>}
+              <h3>{it.titulo}</h3>
+              <p>{it.lugar}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec bg-tint" id="docencia">
+    <div class="wrap narrow">
+      <div class="cvhead" data-reveal><span class="hxb hx-yellow" aria-hidden="true"></span><h2>Docencia universitaria y posgrado</h2></div>
+      <ol class="tl tl--navy" data-reveal-group>
+        {
+          docencia.map((it) => (
+            <li>
+              {it.fecha && <span class="pill pill--cream">{it.fecha}</span>}
+              <h3>{it.titulo}</h3>
+              <p>{it.lugar}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec bg-deep on-dark" id="cursos">
+    <div class="wrap">
+      <div class="cvhead" data-reveal><span class="hxb hx-yellow" aria-hidden="true"></span><h2>Cursos y entrenamientos</h2></div>
+      <ul class="dcourses" data-reveal-group>
+        {
+          cursos.map((c) => (
+            <li>
+              <h3>{c.titulo}</h3>
+              <p>{c.lugar}</p>
+              <span class="pill pill--yellow">{c.dato}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec bg-dots" id="academica">
+    <div class="wrap">
+      <div class="cvhead" data-reveal><span class="hxb hx-blue" aria-hidden="true"></span><h2>Actividad académica</h2></div>
+      <div class="cards cards--wide">
+        <div class="acol" data-reveal-group>
+          <h3>Organización de eventos</h3>
+          {
+            eventos.map((it) => (
+              <div class="acard">
+                {it.fecha && <span class="pill">{it.fecha}</span>}
+                <b>{it.titulo}</b>
+                <span>{it.lugar}</span>
+              </div>
+            ))
+          }
+          <h3>Membresías</h3>
+          {
+            membresias.map((it) => (
+              <div class="acard acard--navy">
+                {it.fecha && <span class="pill pill--yellow">{it.fecha}</span>}
+                <b>{it.titulo}</b>
+                <span>{it.lugar}</span>
+              </div>
+            ))
+          }
+        </div>
+        <div class="acol" data-reveal-group>
+          <h3>Conferencias y talleres impartidos</h3>
+          {
+            conferencias.map((it) => (
+              <div class="acard">
+                {it.fecha && <span class="pill pill--cream">{it.fecha}</span>}
+                <b>{it.titulo}</b>
+                <span>{it.lugar}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-yellow no-print" id="profesionales">
+    <div class="wrap">
+      <div class="sec__head sec__head--split" data-reveal>
+        <div>
+          <p class="eyebrow eyebrow--navy">Para profesionales</p>
+          <h2 class="h2 h2--xl">Supervisión y formación para terapeutas</h2>
+        </div>
+        <p>
+          <a class="btn btn--navy" href={whatsappUrl(waMessages.profesionales)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} /> Consultar por WhatsApp</a>
+        </p>
+      </div>
+      <div class="cards" data-reveal-group>
+        <div class="wcard"><h3>Supervisión</h3><p>Acompañamiento a terapeutas en el análisis y la conceptualización de sus casos desde una mirada conductual-contextual.</p></div>
+        <div class="wcard"><h3>Docencia</h3><p>Docente de posgrado en programas de terapias contextuales en Bolivia y en el exterior.</p></div>
+        <div class="wcard"><h3>Talleres y conferencias</h3><p>Expositor en congresos y jornadas nacionales e internacionales sobre terapias contextuales.</p></div>
+      </div>
+      <p class="mt"><a class="link-arrow" href="/profesionales">Más sobre supervisión y formación <Icon name="arrow" size={18} /></a></p>
+    </div>
+  </section>
+
+  <Pager />
   <Cta title="¿Quieres trabajar conmigo?" text="Terapia, supervisión o formación: escríbeme y conversamos." message={waMessages.general} />
 </Base>

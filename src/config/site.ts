@@ -28,15 +28,21 @@ export const site = {
 
 export const nav = [
   { href: '/', label: 'Inicio' },
-  { href: '/servicios', label: 'Servicios' },
+  { href: '/quien-soy', label: 'Quién soy' },
+  { href: '/como-trabajo', label: 'Cómo trabajo' },
+  { href: '/enfoques', label: 'Enfoques' },
+  { href: '/proceso', label: 'Proceso' },
   { href: '/tarifas', label: 'Tarifas' },
-  { href: '/blog', label: 'Blog' },
   { href: '/hoja-de-vida', label: 'Hoja de vida' },
+  { href: '/preguntas-frecuentes', label: 'Preguntas' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;
 
 export const footerNav = [
-  { href: '/servicios', label: 'Servicios' },
+  { href: '/quien-soy', label: 'Quién soy' },
+  { href: '/como-trabajo', label: 'Cómo trabajo' },
+  { href: '/enfoques', label: 'Enfoques' },
+  { href: '/proceso', label: 'El proceso' },
   { href: '/tarifas', label: 'Tarifas' },
   { href: '/hoja-de-vida', label: 'Hoja de vida' },
   { href: '/profesionales', label: 'Para profesionales' },
