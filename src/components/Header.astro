@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { nav, whatsappUrl, waMessages } from '../config/site';
+
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+---
+
+<header class="site-header" data-header>
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label="Leo Eyzaguirre, psicoterapeuta. Ir al inicio">
+      <Image src={logo} alt="" width={222} height={92} loading="eager" />
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú" data-nav-toggle>
+      <span></span>
+    </button>
+    <nav class="nav" id="menu" aria-label="Principal" data-nav>
+      {
+        nav.map((item) => (
+          <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <a class="btn btn--wa btn--sm" href={whatsappUrl(waMessages.agendar)} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon size={20} />
+        Agendar
+      </a>
+    </nav>
+  </div>
+  <div class="progress" data-progress aria-hidden="true"></div>
+</header>

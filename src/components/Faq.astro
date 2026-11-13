@@ -1,0 +1,19 @@
+---
+import type { Pregunta } from '../data/faq';
+
+interface Props {
+  items: Pregunta[];
+}
+const { items } = Astro.props;
+---
+
+<div class="faq" data-reveal-group>
+  {
+    items.map((item) => (
+      <details>
+        <summary>{item.q}</summary>
+        <p>{item.a}</p>
+      </details>
+    ))
+  }
+</div>

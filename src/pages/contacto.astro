@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { site, whatsappUrl, waMessages } from '../config/site';
+---
+
+<Base
+  title="Contacto"
+  description="Agenda tu sesión por WhatsApp. Atención presencial en Irpavi, La Paz, y online en Bolivia y el exterior."
+  waMessage={waMessages.agendar}
+>
+  <PageHero
+    eyebrow="Contacto"
+    title="Escríbeme y conversamos"
+    lead="Dar el primer paso no requiere tenerlo todo claro. Toda la agenda, presencial u online, se coordina por WhatsApp."
+  />
+
+  <section class="section--tight">
+    <div class="wrap pull-up">
+      <div class="grid grid--2" data-reveal-group>
+        <a class="card" href={whatsappUrl(waMessages.presencial)} target="_blank" rel="noopener noreferrer">
+          <div class="card__icon"><Icon name="home" size={26} /></div>
+          <h2 class="h3">Sesión presencial</h2>
+          <p>En mi consultorio en <strong>Irpavi, Calle 16</strong>, La Paz – Bolivia.</p>
+          <span class="btn btn--wa mt"><WhatsAppIcon size={22} /> Agendar presencial</span>
+        </a>
+        <a class="card" href={whatsappUrl(waMessages.online)} target="_blank" rel="noopener noreferrer">
+          <div class="card__icon"><Icon name="video" size={26} /></div>
+          <h2 class="h3">Sesión online</h2>
+          <p>Por Google Meet u otra plataforma segura, en Bolivia y el exterior.</p>
+          <span class="btn btn--wa mt"><WhatsAppIcon size={22} /> Agendar online</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap--narrow">
+      <div class="card card--flat" data-reveal>
+        <h2 class="h2">Otras formas de encontrarme</h2>
+        <ul class="contact-list mt">
+          <li>
+            <Icon name="phone" />
+            <div>
+              <b>WhatsApp</b>
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{site.whatsappDisplay}</a>
+            </div>
+          </li>
+          <li>
+            <Icon name="instagram" />
+            <div>
+              <b>Instagram</b>
+              {
+                site.instagram.map((ig, i) => (
+                  <>
+                    {i > 0 && ' · '}
+                    <a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}</a>
+                  </>
+                ))
+              }
+            </div>
+          </li>
+          <li>
+            <Icon name="mail" />
+            <div>
+              <b>Correo</b>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+          </li>
+          <li>
+            <Icon name="pin" />
+            <div>
+              <b>Consultorio</b>
+              <span>{site.address.full}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p class="center mt" data-reveal>
+        <a class="link-arrow" href="/preguntas-frecuentes">¿Tienes dudas? Mira las preguntas frecuentes <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+</Base>

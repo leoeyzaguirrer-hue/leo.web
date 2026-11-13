@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "web-leo", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 4321 },
+    { "name": "web-leo-seguro", "runtimeExecutable": "node", "runtimeArgs": ["scripts/preview-secure.mjs"], "port": 4322 }
+  ]
+}

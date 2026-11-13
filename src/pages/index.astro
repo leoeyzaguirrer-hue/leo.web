@@ -1,0 +1,191 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import PostCard from '../components/PostCard.astro';
+import foto from '../assets/leo-consultorio.jpg';
+import { site, whatsappUrl, waMessages } from '../config/site';
+import { motivos, enfoques, secciones } from '../data/servicios';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const accesos = [
+  { href: '/servicios', icon: 'heart', titulo: 'Servicios', texto: 'Quién soy, cómo trabajo y qué puedes esperar de la terapia.' },
+  { href: '/tarifas', icon: 'wallet', titulo: 'Tarifas', texto: 'Precios por sesión y paquetes, en Bolivia y desde el exterior.' },
+  { href: '/hoja-de-vida', icon: 'user', titulo: 'Hoja de vida', texto: 'Mi formación, experiencia clínica, docencia y actividad académica.' },
+  { href: '/blog', icon: 'pen', titulo: 'Blog', texto: 'Artículos sobre psicología contextual, en lenguaje claro.' },
+  { href: '/profesionales', icon: 'users', titulo: 'Para profesionales', texto: 'Supervisión, docencia y formación para terapeutas.' },
+  { href: '/preguntas-frecuentes', icon: 'help', titulo: 'Preguntas frecuentes', texto: 'Dudas habituales sobre las sesiones, la modalidad y los pagos.' },
+] as const;
+---
+
+<Base waMessage={waMessages.agendar}>
+  <section class="hero bg-blue">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="eyebrow">Psicoterapia basada en evidencia</p>
+        <h1 class="h1">Hola, soy Leo</h1>
+        <p class="hero__role">{site.role}</p>
+        <p class="lead hero__lead">
+          Te acompaño a relacionarte de otra forma con lo que piensas y sientes, y a dar pasos concretos hacia una vida con más sentido.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href={whatsappUrl(waMessages.agendar)} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon size={22} /> Agendar por WhatsApp
+          </a>
+          <a class="btn btn--ghost" href="/servicios">Conoce cómo trabajo <Icon name="arrow" size={18} /></a>
+        </div>
+        <div class="hero__meta">
+          <span><Icon name="home" size={18} /> Presencial en La Paz, Bolivia</span>
+          <span><Icon name="video" size={18} /> Online, en Bolivia y el exterior</span>
+        </div>
+      </div>
+      <div class="hero__art">
+        <div class="hexes">
+          <div class="hexes__yellow" aria-hidden="true"></div>
+          <div class="hexes__navy" aria-hidden="true"></div>
+          <div class="hexes__white" aria-hidden="true"></div>
+          <Image
+            class="hexes__photo"
+            src={foto}
+            alt="Fotografía de Leo Eyzaguirre sonriendo en su consultorio"
+            width={640}
+            height={740}
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- Accesos -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head section__head--center" data-reveal>
+        <p class="eyebrow eyebrow--blue">Explora</p>
+        <h2 class="h2">¿Qué estás buscando?</h2>
+      </div>
+      <div class="grid grid--3" data-reveal-group>
+        {
+          accesos.map((a) => (
+            <a class="card" href={a.href}>
+              <div class="card__icon">
+                <Icon name={a.icon} size={26} />
+              </div>
+              <h3 class="h3">{a.titulo}</h3>
+              <p>{a.texto}</p>
+              <span class="link-arrow mt">
+                Ver más <Icon name="arrow" size={18} />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- En qué puedo acompañarte -->
+  <section class="section bg-tint">
+    <div class="wrap stack stack--lg">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow eyebrow--blue">Motivos de consulta</p>
+        <h2 class="h2">¿En qué puedo acompañarte?</h2>
+        <p class="lead">
+          Lo que haces, sientes y piensas no aparece de la nada: tiene una historia y ocurre en un contexto. En terapia miramos juntos
+          qué función cumplen hoy tus formas de responder.
+        </p>
+      </div>
+      <ul class="chips" data-reveal-group>
+        {motivos.map((m) => <li class="chip chip--outline"><span class="hexdot" aria-hidden="true" />{m}</li>)}
+      </ul>
+      <div class="note note--cream" data-reveal>
+        <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+        <p>
+          ¿No ves aquí lo que estás viviendo? Igual puedes
+          <a href={whatsappUrl(waMessages.general)} target="_blank" rel="noopener noreferrer">escribirme</a> y conversamos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enfoques -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow eyebrow--blue">Enfoques</p>
+        <h2 class="h2">Modelos con respaldo científico</h2>
+        <p class="lead">No necesitas elegir uno: tras la evaluación inicial te propongo el que mejor se ajusta a ti.</p>
+      </div>
+      <div class="grid grid--4" data-reveal-group>
+        {
+          enfoques.map((e) => (
+            <a class="card enfoque" href="/servicios#enfoques">
+              <span class="sigla">{e.sigla}</span>
+              <h3 class="h3">{e.nombre}</h3>
+            </a>
+          ))
+        }
+      </div>
+      <div class="chips mt" data-reveal>
+        {secciones.map((s) => <a class="chip" href={`/servicios#${s.id}`}>{s.label}</a>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalidades -->
+  <section class="section bg-tint">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <p class="eyebrow eyebrow--blue">Modalidades</p>
+        <h2 class="h2">Presencial u online, tú eliges</h2>
+        <p class="lead">Sesiones de alrededor de 1 hora, semanales o quincenales.</p>
+      </div>
+      <div class="grid grid--2" data-reveal-group>
+        <a class="card" href={whatsappUrl(waMessages.presencial)} target="_blank" rel="noopener noreferrer">
+          <div class="card__icon"><Icon name="home" size={26} /></div>
+          <h3 class="h3">Presencial</h3>
+          <p>En mi consultorio en <strong>Irpavi, Calle 16</strong>, La Paz – Bolivia.</p>
+          <span class="link-arrow mt">Agendar por WhatsApp <Icon name="arrow" size={18} /></span>
+        </a>
+        <a class="card" href={whatsappUrl(waMessages.online)} target="_blank" rel="noopener noreferrer">
+          <div class="card__icon"><Icon name="video" size={26} /></div>
+          <h3 class="h3">Online</h3>
+          <p>Por Google Meet u otra plataforma segura, en Bolivia y el exterior.</p>
+          <span class="link-arrow mt">Agendar por WhatsApp <Icon name="arrow" size={18} /></span>
+        </a>
+      </div>
+      <p class="center mt" data-reveal>
+        <a class="btn btn--blue" href="/tarifas">Ver tarifas <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  {
+    posts.length > 0 && (
+      <section class="section">
+        <div class="wrap">
+          <div class="section__head" data-reveal>
+            <p class="eyebrow eyebrow--blue">Blog</p>
+            <h2 class="h2">Lo último que escribí</h2>
+          </div>
+          <div class="grid grid--3" data-reveal-group>
+            {posts.map((post) => <PostCard post={post} />)}
+          </div>
+          <p class="mt" data-reveal>
+            <a class="link-arrow" href="/blog">Ver todos los artículos <Icon name="arrow" size={18} /></a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <Cta />
+</Base>

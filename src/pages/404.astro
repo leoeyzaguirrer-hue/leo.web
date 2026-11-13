@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Página no encontrada" noindex>
+  <section class="section bg-blue center">
+    <div class="wrap wrap--narrow stack">
+      <p class="error-code">404</p>
+      <h1 class="h1 h1--page">Esta página no existe</h1>
+      <p class="lead">Puede que el enlace esté roto o que la página se haya movido.</p>
+      <div class="btn-row mt">
+        <a class="btn btn--primary" href="/">Volver al inicio <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--ghost" href="/servicios">Ver servicios</a>
+      </div>
+    </div>
+  </section>
+</Base>

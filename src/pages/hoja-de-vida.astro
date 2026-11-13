@@ -1,0 +1,127 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import Timeline from '../components/Timeline.astro';
+import retrato from '../assets/leo-retrato.jpg';
+import { site, whatsappUrl, waMessages } from '../config/site';
+import {
+  perfil,
+  enfoquesCv,
+  idiomas,
+  formacionAcademica,
+  practicaClinica,
+  docencia,
+  cursos,
+  eventos,
+  conferencias,
+  membresias,
+} from '../data/cv';
+---
+
+<Base
+  title="Hoja de vida"
+  description="Hoja de vida de Leonardo Eyzaguirre Rojas, psicoterapeuta conductual-contextual: formación, experiencia clínica, docencia, cursos y actividad académica."
+  waMessage={waMessages.general}
+>
+  <PageHero eyebrow="Hoja de vida" title="Leonardo Eyzaguirre Rojas" lead="Psicoterapeuta Conductual-Contextual">
+    <div class="btn-row no-print">
+      <button class="btn btn--primary" type="button" data-print><Icon name="print" size={20} /> Imprimir o guardar en PDF</button>
+      <a class="btn btn--ghost" href="/servicios">Ver servicios <Icon name="arrow" size={18} /></a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="wrap cv">
+      <aside class="cv__side" data-reveal="left">
+        <div class="cv__photo">
+          <Image src={retrato} alt="Foto de Leonardo Eyzaguirre Rojas" width={336} height={380} loading="eager" />
+        </div>
+        <div>
+          <p class="cv__name">Leonardo<br />Eyzaguirre Rojas</p>
+          <p class="cv__role">Psicoterapeuta<br />Conductual-Contextual</p>
+        </div>
+        <section>
+          <h2>Contacto</h2>
+          <ul class="cv__contact">
+            <li>
+              <Icon name="phone" size={16} />
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">{site.whatsappDisplay}</a>
+            </li>
+            <li><Icon name="mail" size={16} /><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            <li><Icon name="pin" size={16} /><span>{site.address.full}</span></li>
+            <li>
+              <Icon name="instagram" size={16} />
+              <span>
+                {site.instagram.map((ig) => <a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}<br /></a>)}
+              </span>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Idiomas</h2>
+          {idiomas.map((i) => <div class="cv__lang"><b>{i.idioma}</b><span>{i.nivel}</span></div>)}
+        </section>
+      </aside>
+
+      <div class="cv__main">
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Perfil profesional</h2>
+          <div class="stack mt" data-reveal-group>
+            {perfil.map((p) => <p>{p}</p>)}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Enfoques</h2>
+          <ul class="chips mt" data-reveal-group>
+            {enfoquesCv.map((e) => <li class="chip">{e}</li>)}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Formación académica</h2>
+          <Timeline items={formacionAcademica} />
+        </section>
+
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Experiencia profesional</h2>
+          <h3 class="cv__h3">Práctica clínica</h3>
+          <Timeline items={practicaClinica} />
+          <h3 class="cv__h3">Docencia universitaria y posgrado</h3>
+          <Timeline items={docencia} />
+        </section>
+
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Cursos y entrenamientos</h2>
+          <ul class="courses" data-reveal-group>
+            {
+              cursos.map((c) => (
+                <li class="course">
+                  <b>{c.titulo}</b>
+                  <span>
+                    {c.lugar} · <strong>{c.dato}</strong>
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="cv__h2" data-reveal><span class="hexdot" aria-hidden="true"></span>Actividad académica</h2>
+          <h3 class="cv__h3">Organización de eventos</h3>
+          <Timeline items={eventos} />
+          <h3 class="cv__h3">Conferencias y talleres impartidos</h3>
+          <Timeline items={conferencias} />
+          <h3 class="cv__h3">Membresías</h3>
+          <Timeline items={membresias} />
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <Cta title="¿Quieres trabajar conmigo?" text="Terapia, supervisión o formación: escríbeme y conversamos." message={waMessages.general} />
+</Base>

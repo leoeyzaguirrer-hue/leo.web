@@ -1,0 +1,273 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { whatsappUrl, waMessages } from '../config/site';
+import { secciones, pilares, queHace, principios, motivos, enfoques, pasos, formacion } from '../data/servicios';
+import { primeraSesion } from '../data/faq';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: primeraSesion.map((p) => ({
+    '@type': 'Question',
+    name: p.q,
+    acceptedAnswer: { '@type': 'Answer', text: p.a },
+  })),
+};
+---
+
+<Base
+  title="Servicios"
+  description="Quién soy, cómo trabajo y qué puedes esperar de la terapia: enfoques (ACT, FAP, AC, DBT), el proceso, tu primera sesión y mi formación."
+  waMessage={waMessages.agendar}
+  schema={[faqSchema]}
+>
+  <PageHero
+    eyebrow="Carta de presentación"
+    title="Hola, soy Leo"
+    lead="Aquí te cuento quién soy, cómo trabajo y qué puedes esperar de la terapia, para que des el primer paso con más claridad y tranquilidad."
+  >
+    <div class="btn-row">
+      <a class="btn btn--primary" href={whatsappUrl(waMessages.agendar)} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon size={22} /> Agendar por WhatsApp
+      </a>
+      <a class="btn btn--ghost" href="/tarifas">Ver tarifas <Icon name="arrow" size={18} /></a>
+    </div>
+  </PageHero>
+
+  <nav class="subnav" aria-label="Secciones de esta página" data-spy>
+    <div class="wrap subnav__list">
+      {secciones.map((s) => <a href={`#${s.id}`}>{s.label}</a>)}
+    </div>
+  </nav>
+
+  <!-- 01 · Quién soy -->
+  <section class="section" id="quien-soy">
+    <div class="wrap stack stack--lg">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">01</span><h2 class="h2">¿Quién soy?</h2></div>
+        <p class="lead">
+          ¡Mucho gusto! Soy Leonardo Eyzaguirre, aunque puedes decirme <strong>Leo</strong>. Soy psicólogo y psicoterapeuta
+          especializado en <strong>terapias conductuales-contextuales</strong>, también conocidas como terapias de tercera generación.
+        </p>
+      </div>
+
+      <div class="stack">
+        <h3 class="h3" data-reveal>La base de mi trabajo</h3>
+        <p data-reveal>Más allá del enfoque que usemos en cada caso, todo mi trabajo se apoya en dos pilares de la ciencia del comportamiento:</p>
+        <div class="grid grid--2" data-reveal-group>
+          {
+            pilares.map((p) => (
+              <article class="card card--hover">
+                <div class="with-dot">
+                  <span class="hexdot hexdot--lg" aria-hidden="true" />
+                  <h4 class="h3">{p.titulo}</h4>
+                </div>
+                <p class="mt">{p.texto}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="stack">
+        <h3 class="h3" data-reveal>¿Qué hace un terapeuta conductual-contextual?</h3>
+        <ul class="grid grid--2" data-reveal-group>
+          {
+            queHace.map((t) => (
+              <li class="note with-dot">
+                <span class="hexdot hexdot--blue" aria-hidden="true" />
+                <p>{t}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Cómo trabajo -->
+  <section class="section bg-tint" id="como-trabajo">
+    <div class="wrap stack stack--lg">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">02</span><h2 class="h2">¿Cómo trabajo?</h2></div>
+        <p class="lead">
+          Imagina que lo que haces, sientes y piensas no aparece de la nada: tiene una historia y ocurre en un contexto. En terapia
+          miramos juntos qué función cumplen hoy tus formas de responder, qué te dan y qué te cuestan.
+        </p>
+      </div>
+      <div class="grid grid--3" data-reveal-group>
+        {
+          principios.map((p) => (
+            <div class="card card--hover" data-tilt>
+              <span class="hexdot hexdot--lg" aria-hidden="true" />
+              <h3 class="h3 mt">{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="stack">
+        <h3 class="h2" data-reveal>¿En qué puedo acompañarte?</h3>
+        <ul class="chips" data-reveal-group>
+          {motivos.map((m) => <li class="chip chip--outline"><span class="hexdot" aria-hidden="true" />{m}</li>)}
+        </ul>
+        <div class="note note--cream" data-reveal>
+          <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+          <p>
+            ¿No ves aquí lo que estás viviendo? Igual puedes
+            <a href={whatsappUrl(waMessages.general)} target="_blank" rel="noopener noreferrer">escribirme</a> y conversamos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Enfoques -->
+  <section class="section" id="enfoques">
+    <div class="wrap">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">03</span><h2 class="h2">Los enfoques con los que trabajo</h2></div>
+        <p class="lead">
+          Trabajo con modelos que cuentan con respaldo científico. No necesitas elegir uno: tras la evaluación inicial te propongo el
+          que mejor se ajusta a ti.
+        </p>
+      </div>
+      <div class="grid grid--2" data-reveal-group>
+        {
+          enfoques.map((e) => (
+            <article class="card card--hover enfoque">
+              <div class="enfoque__head">
+                <span class="sigla">{e.sigla}</span>
+                <h3 class="h3">{e.nombre}</h3>
+              </div>
+              <p><strong>Útil para:</strong> {e.util}</p>
+              <p><strong>Cómo funciona:</strong> {e.como}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="note mt" data-reveal>
+        <span class="hexdot hexdot--blue hexdot--lg" aria-hidden="true"></span>
+        <p>
+          <strong>Sobre DBT:</strong> la ofrezco solo cuando una evaluación precisa muestra que es lo indicado, ya que requiere un
+          compromiso intenso y sostenido.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · Proceso -->
+  <section class="section bg-tint" id="proceso">
+    <div class="wrap stack stack--lg">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">04</span><h2 class="h2">¿Cómo es el proceso?</h2></div>
+        <p class="lead">Cada proceso es único, pero suele seguir este camino:</p>
+      </div>
+      <ol class="steps">
+        {
+          pasos.map((p, i) => (
+            <li class="step" data-reveal="left">
+              <span class="step__n">{i + 1}</span>
+              <div class="step__body">
+                <h3 class="h3">
+                  {p.titulo} {p.nota && <span class="step__note">· {p.nota}</span>}
+                </h3>
+                <p set:html={p.texto} />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="stack">
+        <h3 class="h2" data-reveal>Modalidades de atención</h3>
+        <div class="grid grid--2" data-reveal-group>
+          <div class="card">
+            <div class="card__icon"><Icon name="home" size={26} /></div>
+            <h4 class="h3">Presencial</h4>
+            <p>En mi consultorio en <strong>Irpavi, Calle 16</strong>, La Paz – Bolivia.</p>
+            <a class="link-arrow mt" href={whatsappUrl(waMessages.presencial)} target="_blank" rel="noopener noreferrer">
+              Agendar sesión presencial <Icon name="arrow" size={18} />
+            </a>
+          </div>
+          <div class="card">
+            <div class="card__icon"><Icon name="video" size={26} /></div>
+            <h4 class="h3">Online</h4>
+            <p>
+              Por Google Meet u otra plataforma segura, en Bolivia y el exterior. Solo necesitas buena conexión y un espacio tranquilo
+              para expresarte con comodidad.
+            </p>
+            <a class="link-arrow mt" href={whatsappUrl(waMessages.online)} target="_blank" rel="noopener noreferrer">
+              Agendar sesión online <Icon name="arrow" size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Primera sesión -->
+  <section class="section" id="primera-sesion">
+    <div class="wrap wrap--narrow stack stack--lg">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">05</span><h2 class="h2">Tu primera sesión</h2></div>
+        <p class="lead">Es normal llegar con dudas o algo de nervios. Aquí respondo las preguntas más frecuentes.</p>
+      </div>
+      <Faq items={primeraSesion} />
+      <div class="card bg-blue with-dot" data-reveal="zoom">
+        <Icon name="doc" size={40} label="Documento para firmar" />
+        <div>
+          <h3 class="cta__title">Antes de empezar: consentimiento informado</h3>
+          <p class="mt">
+            Es un documento breve que explica cómo funciona la terapia: sus objetivos, la confidencialidad y sus límites, los
+            honorarios y tus derechos como consultante. Lo revisamos juntos y lo firmas antes de iniciar:
+            <b>es un requisito para comenzar la terapia.</b>
+          </p>
+        </div>
+      </div>
+      <p class="center" data-reveal>
+        <a class="link-arrow" href="/preguntas-frecuentes">Ver todas las preguntas frecuentes <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 06 · Formación -->
+  <section class="section bg-tint" id="formacion">
+    <div class="wrap stack stack--lg">
+      <div class="section__head" data-reveal>
+        <div class="numbered"><span class="num" aria-hidden="true">06</span><h2 class="h2">Mi formación y experiencia</h2></div>
+      </div>
+      <ul class="grid grid--2" data-reveal-group>
+        {
+          formacion.map((f) => (
+            <li class="card card--hover with-dot">
+              <span class="hexdot hexdot--lg" aria-hidden="true" />
+              <div>
+                <strong>{f.titulo}</strong>
+                <p class="muted">{f.detalle}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="card" data-reveal>
+        <h3 class="h3">¿Quieres conocer más sobre mi trayectoria?</h3>
+        <p>En mi hoja de vida encuentras el detalle de mi formación, experiencia clínica, docencia y actividad académica.</p>
+        <div class="btn-row mt">
+          <a class="btn btn--blue" href="/hoja-de-vida">Ver mi hoja de vida <Icon name="arrow" size={18} /></a>
+          <a class="btn btn--outline" href="https://www.instagram.com/leo.eyzaguirre/" target="_blank" rel="noopener noreferrer">
+            <Icon name="instagram" size={20} /> @leo.eyzaguirre
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

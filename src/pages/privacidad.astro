@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../config/site';
+---
+
+<Base title="Privacidad" description="Cómo trata este sitio tu información: sin cookies de seguimiento, sin formularios y sin venta de datos.">
+  <PageHero eyebrow="Privacidad" title="Política de privacidad" lead="En corto: este sitio no te pide datos ni te rastrea." />
+
+  <section class="section">
+    <div class="wrap wrap--narrow prose" data-reveal>
+      <h2>Qué datos recoge este sitio</h2>
+      <p>
+        Este sitio es informativo. No tiene formularios, no crea cuentas de usuario y no usa cookies de seguimiento ni publicidad.
+      </p>
+
+      <h2>Contacto por WhatsApp, Instagram o correo</h2>
+      <p>
+        Los botones de contacto abren WhatsApp, Instagram o tu aplicación de correo. Desde ese momento la conversación ocurre en esos
+        servicios y se rige por sus propias políticas de privacidad. Lo que me escribas lo uso únicamente para responderte y coordinar
+        tu atención.
+      </p>
+
+      <h2>Confidencialidad en terapia</h2>
+      <p>
+        Lo que se conversa en sesión es confidencial, con los límites que marca la ética profesional; por ejemplo, si hay un riesgo
+        grave para tu vida o la de otra persona. Estos puntos se detallan en el consentimiento informado que revisamos juntos antes de
+        iniciar.
+      </p>
+
+      <h2>Alojamiento</h2>
+      <p>
+        El sitio está alojado en Vercel, que, como cualquier servidor web, procesa datos técnicos mínimos (por ejemplo, la dirección IP)
+        para entregar las páginas y proteger el servicio.
+      </p>
+
+      <h2>Contacto</h2>
+      <p>
+        Si tienes preguntas sobre esta política, puedes escribirme a <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</Base>

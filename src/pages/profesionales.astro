@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import Timeline from '../components/Timeline.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { whatsappUrl, waMessages } from '../config/site';
+import { docencia, conferencias, eventos, enfoquesCv } from '../data/cv';
+
+const areas = [
+  {
+    icon: 'users',
+    titulo: 'Supervisión',
+    texto: 'Acompañamiento a terapeutas en el análisis y la conceptualización de sus casos desde una mirada conductual-contextual.',
+  },
+  {
+    icon: 'pen',
+    titulo: 'Docencia',
+    texto: 'Docente de posgrado en programas de terapias contextuales en Bolivia y en el exterior.',
+  },
+  {
+    icon: 'heart',
+    titulo: 'Talleres y conferencias',
+    texto: 'Expositor en congresos y jornadas nacionales e internacionales sobre terapias contextuales.',
+  },
+] as const;
+---
+
+<Base
+  title="Para profesionales"
+  description="Supervisión, docencia y formación en terapias conductuales-contextuales para psicólogos y terapeutas."
+  waMessage={waMessages.profesionales}
+>
+  <PageHero
+    eyebrow="Para profesionales"
+    title="Supervisión y formación"
+    lead="Integro la práctica clínica con la docencia universitaria, la supervisión y la formación de terapeutas en Bolivia y Latinoamérica."
+  >
+    <div class="btn-row">
+      <a class="btn btn--primary" href={whatsappUrl(waMessages.profesionales)} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon size={22} /> Consultar por WhatsApp
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="section--tight">
+    <div class="wrap pull-up">
+      <div class="grid grid--3" data-reveal-group>
+        {
+          areas.map((a) => (
+            <div class="card card--hover" data-tilt>
+              <div class="card__icon">
+                <Icon name={a.icon} size={26} />
+              </div>
+              <h2 class="h3">{a.titulo}</h2>
+              <p>{a.texto}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap--narrow stack stack--lg">
+      <div class="stack">
+        <h2 class="h2" data-reveal>Áreas de trabajo</h2>
+        <ul class="chips" data-reveal-group>
+          {enfoquesCv.map((e) => <li class="chip">{e}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2 class="h2" data-reveal>Docencia universitaria y posgrado</h2>
+        <Timeline items={docencia} />
+      </div>
+      <div>
+        <h2 class="h2" data-reveal>Conferencias, talleres y eventos</h2>
+        <Timeline items={[...eventos, ...conferencias]} />
+      </div>
+      <p data-reveal>
+        <a class="link-arrow" href="/hoja-de-vida">Ver la hoja de vida completa <Icon name="arrow" size={18} /></a>
+      </p>
+      <div class="note" data-reveal>
+        <span class="hexdot hexdot--blue hexdot--lg" aria-hidden="true"></span>
+        <p>
+          También comparto contenido para terapeutas en Instagram:
+          <a href="https://www.instagram.com/leo.eyzaguirre/" target="_blank" rel="noopener noreferrer">@leo.eyzaguirre</a> y
+          <a href="https://www.instagram.com/espacio.contextual.bo/" target="_blank" rel="noopener noreferrer">@espacio.contextual.bo</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Cta
+    title="¿Buscas supervisión o formación?"
+    text="Escríbeme y vemos qué necesitas."
+    message={waMessages.profesionales}
+  />
+</Base>

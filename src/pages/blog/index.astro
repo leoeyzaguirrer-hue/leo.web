@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import PostCard from '../../components/PostCard.astro';
+import Cta from '../../components/Cta.astro';
+import { waMessages } from '../../config/site';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<Base
+  title="Blog"
+  description="Artículos sobre psicología contextual, terapias de tercera generación y salud mental, en lenguaje claro."
+  waMessage={waMessages.blog}
+>
+  <PageHero eyebrow="Blog" title="Psicología contextual, en claro" lead="Ideas y herramientas de la ciencia del comportamiento, explicadas sin jerga." />
+
+  <section class="section">
+    <div class="wrap">
+      {
+        posts.length > 0 ? (
+          <div class="grid grid--3" data-reveal-group>
+            {posts.map((post) => <PostCard post={post} />)}
+          </div>
+        ) : (
+          <p class="lead center">Pronto habrá artículos aquí.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <Cta message={waMessages.blog} />
+</Base>

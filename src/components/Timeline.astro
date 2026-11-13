@@ -1,0 +1,22 @@
+---
+import type { Item } from '../data/cv';
+
+interface Props {
+  items: Item[];
+}
+const { items } = Astro.props;
+---
+
+<ul class="timeline" data-reveal-group>
+  {
+    items.map((item) => (
+      <li>
+        <span class="timeline__date">{item.fecha ?? ''}</span>
+        <div>
+          <p class="timeline__title">{item.titulo}</p>
+          <p class="timeline__place">{item.lugar}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>

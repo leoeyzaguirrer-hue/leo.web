@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import { waMessages } from '../config/site';
+import { primeraSesion, sesionesYPagos } from '../data/faq';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [...primeraSesion, ...sesionesYPagos].map((p) => ({
+    '@type': 'Question',
+    name: p.q,
+    acceptedAnswer: { '@type': 'Answer', text: p.a },
+  })),
+};
+---
+
+<Base
+  title="Preguntas frecuentes"
+  description="Respuestas a las dudas más habituales sobre la primera sesión, la terapia online, las modalidades y los pagos."
+  schema={[schema]}
+>
+  <PageHero
+    eyebrow="Preguntas frecuentes"
+    title="Dudas habituales"
+    lead="Es normal llegar con dudas o algo de nervios. Aquí respondo las preguntas más frecuentes."
+  />
+
+  <section class="section">
+    <div class="wrap wrap--narrow stack stack--lg">
+      <div class="stack">
+        <h2 class="h2" data-reveal>Tu primera sesión</h2>
+        <Faq items={primeraSesion} />
+      </div>
+      <div class="stack">
+        <h2 class="h2" data-reveal>Sesiones, modalidades y pagos</h2>
+        <Faq items={sesionesYPagos} />
+      </div>
+    </div>
+  </section>
+
+  <Cta title="¿Tienes otra pregunta?" text="Escríbeme y la conversamos." message={waMessages.general} />
+</Base>

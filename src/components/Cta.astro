@@ -1,0 +1,32 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { site, whatsappUrl, waMessages } from '../config/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+  message?: string;
+  button?: string;
+}
+const {
+  title = 'Dar el primer paso no requiere tenerlo todo claro.',
+  text = 'Escríbeme y conversamos.',
+  message = waMessages.agendar,
+  button = `WhatsApp: ${site.whatsappDisplay}`,
+} = Astro.props;
+---
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta bg-blue" data-reveal="zoom">
+      <div>
+        <p class="cta__title">{title}</p>
+        <p>{text}</p>
+      </div>
+      <a class="btn btn--primary" href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer">
+        <WhatsAppIcon size={22} />
+        {button}
+      </a>
+    </div>
+  </div>
+</section>

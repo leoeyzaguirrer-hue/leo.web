@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { whatsappUrl, waMessages } from '../config/site';
+import { tarifas } from '../data/tarifas';
+---
+
+<Base
+  title="Tarifas"
+  description="Tarifas de psicoterapia individual: 250 Bs por sesión en Bolivia y 35 USD desde el exterior. Paquetes de 4 y 6 sesiones."
+  waMessage={waMessages.agendar}
+>
+  <PageHero eyebrow="Tarifas" title="Inversión en tu proceso" lead="Sesiones de alrededor de 1 hora, presenciales u online.">
+    <div><span class="chip chip--dark">Psicoterapia individual</span></div>
+  </PageHero>
+
+  <section class="section--tight">
+    <div class="wrap stack pull-up">
+      <div class="grid grid--2" data-reveal-group>
+        {
+          tarifas.map((t) => (
+            <section class="card price" data-tilt>
+              <div class="price__head">
+                <Icon name={t.icono} size={26} />
+                <h2 class="h3">{t.titulo}</h2>
+              </div>
+              <div class="price__amount">
+                <b>{t.precio}</b>
+                <span>por sesión</span>
+              </div>
+              <div class="rule" />
+              <div class="stack">
+                <span class="label">Paquetes</span>
+                {t.paquetes.map((p) => (
+                  <div class="row">
+                    <span>{p.sesiones}</span>
+                    <strong>{p.precio}</strong>
+                  </div>
+                ))}
+              </div>
+              <p>
+                <strong>Formas de pago:</strong> {t.pago}
+              </p>
+              <a class="btn btn--wa" href={whatsappUrl(waMessages[t.mensaje])} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon size={22} /> Agendar por WhatsApp
+              </a>
+            </section>
+          ))
+        }
+      </div>
+
+      <div class="note" data-reveal>
+        <span class="hexdot hexdot--blue hexdot--lg" aria-hidden="true"></span>
+        <p>
+          <strong>¿Por qué un paquete?</strong> Si quieres comprometerte con un proceso continuo, los paquetes te permiten asegurar tus
+          sesiones a un precio menor.
+        </p>
+      </div>
+      <div class="note note--cream" data-reveal>
+        <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+        <p><strong>Importante:</strong> todos los pagos se realizan un día antes o el mismo día de la sesión.</p>
+      </div>
+
+      <p class="center mt" data-reveal>
+        <a class="link-arrow" href="/servicios#proceso">Conoce cómo es el proceso <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+
+  <Cta />
+</Base>
