@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
+import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { whatsappUrl, waMessages } from '../config/site';
+import { pasos } from '../data/servicios';
+
+const colores = ['hx-navy', 'hx-blue', 'hx-yellow', 'hx-blue', 'hx-navy'];
+---
+
+<Base
+  title="El proceso"
+  description="Cómo es el proceso de terapia: primer contacto, evaluación inicial con análisis funcional, objetivos, sesiones de trabajo y cierre. Presencial u online."
+  waMessage={waMessages.agendar}
+>
+  <PageHero eyebrow="04 · Paso a paso" title="¿Cómo es el proceso?" crumb="El proceso" bg="navy" lead="Cada proceso es único, pero suele seguir este camino." />
+
+  <section class="sec bg-dots">
+    <div class="wrap">
+      <ol class="vsteps">
+        {
+          pasos.map((p, i) => (
+            <li class="vstep" data-reveal>
+              <div class="vstep__rail">
+                <span class:list={['hxb', colores[i % 5]]} aria-hidden="true">{i + 1}</span>
+              </div>
+              <div class="vstep__body">
+                <h2>
+                  {p.titulo}
+                  {p.nota && <span class="pill pill--cream">{p.nota}</span>}
+                </h2>
+                <p set:html={p.texto} />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec bg-graph line-top">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">Modalidades</p>
+        <h2 class="h2 h2--xl">Modalidades de atención</h2>
+      </div>
+      <div class="cards" data-reveal-group>
+        <article class="mcard">
+          <Icon name="home" size={36} />
+          <h3>Presencial</h3>
+          <p>En mi consultorio en <strong>Irpavi, Calle 16</strong>, La Paz – Bolivia.</p>
+          <a class="btn btn--primary" href={whatsappUrl(waMessages.presencial)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} /> Agendar presencial</a>
+        </article>
+        <article class="mcard mcard--blue">
+          <Icon name="video" size={36} />
+          <h3>Online</h3>
+          <p>Por Google Meet u otra plataforma segura, en Bolivia y el exterior. Solo necesitas buena conexión y un espacio tranquilo para expresarte con comodidad.</p>
+          <a class="btn btn--white" href={whatsappUrl(waMessages.online)} target="_blank" rel="noopener noreferrer"><WhatsAppIcon size={20} /> Agendar online</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Pager />
+  <Cta />
+</Base>

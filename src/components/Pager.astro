@@ -1,0 +1,27 @@
+---
+import { nav } from '../config/site';
+
+// Enlaces «Anterior / Siguiente» según el orden del menú principal.
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
+const i = nav.findIndex((n) => n.href === path);
+const at = (k: number) => nav[(k + nav.length) % nav.length];
+const prev = i >= 0 ? at(i - 1) : null;
+const next = i >= 0 ? at(i + 1) : null;
+---
+
+{
+  prev && next && (
+    <nav class="bg-white line-top no-print" aria-label="Recorrer las secciones">
+      <div class="wrap pager">
+        <a href={prev.href}>
+          <small>← Anterior</small>
+          <b>{prev.label}</b>
+        </a>
+        <a class="pager__next" href={next.href}>
+          <small>{next.href === '/' ? 'Volver al →' : 'Siguiente →'}</small>
+          <b>{next.label}</b>
+        </a>
+      </div>
+    </nav>
+  )
+}

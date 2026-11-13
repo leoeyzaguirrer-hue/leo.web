@@ -17,7 +17,7 @@ npm run seguro     # sirve dist/ con las cabeceras de seguridad reales → http:
 |---|---|
 | WhatsApp, Instagram, correo, dirección, menú | `src/config/site.ts` |
 | Mensajes prellenados de WhatsApp | `src/config/site.ts` (`waMessages`) |
-| Textos de servicios (carta de presentación) | `src/data/servicios.ts` |
+| Textos de Quién soy, Cómo trabajo, Enfoques y Proceso | `src/data/servicios.ts` |
 | Precios | `src/data/tarifas.ts` |
 | Hoja de vida | `src/data/cv.ts` |
 | Preguntas frecuentes | `src/data/faq.ts` |

@@ -9,24 +9,21 @@ interface Props {
   button?: string;
 }
 const {
-  title = 'Dar el primer paso no requiere tenerlo todo claro.',
-  text = 'Escríbeme y conversamos.',
+  title = 'Dar el primer paso no requiere tenerlo todo claro',
+  text = 'Escríbeme y conversamos. Coordinamos tu primera sesión, presencial u online.',
   message = waMessages.agendar,
-  button = `WhatsApp: ${site.whatsappDisplay}`,
+  button = `WhatsApp · ${site.whatsappDisplay}`,
 } = Astro.props;
 ---
 
-<section class="section section--tight">
-  <div class="wrap">
-    <div class="cta bg-blue" data-reveal="zoom">
-      <div>
-        <p class="cta__title">{title}</p>
-        <p>{text}</p>
-      </div>
-      <a class="btn btn--primary" href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer">
-        <WhatsAppIcon size={22} />
-        {button}
-      </a>
-    </div>
+<section class="bg-yellow sec sec--sm no-print">
+  <div class="wrap cta-band" data-reveal="zoom">
+    <span class="hxb hx-navy" aria-hidden="true"></span>
+    <p class="cta-band__title">{title}</p>
+    <p>{text}</p>
+    <a class="btn btn--navy btn--lg" href={whatsappUrl(message)} target="_blank" rel="noopener noreferrer">
+      <WhatsAppIcon size={22} />
+      {button}
+    </a>
   </div>
 </section>

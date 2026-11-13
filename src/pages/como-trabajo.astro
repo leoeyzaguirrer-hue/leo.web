@@ -1,0 +1,174 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
+import Cta from '../components/Cta.astro';
+import { whatsappUrl, waMessages } from '../config/site';
+import { principios, motivos } from '../data/servicios';
+
+const colores = ['hx-navy', 'hx-blue', 'hx-yellow'];
+const puntos = ['hexdot--navy', 'hexdot--blue', ''];
+
+// Los seis procesos de la flexibilidad psicológica (hexaflex de ACT).
+const hexaflex = [
+  { label: 'Momento presente', color: 'hx-white', texto: 'Notar con flexibilidad lo que ocurre aquí y ahora, dentro y fuera de ti.' },
+  { label: 'Valores', color: 'hx-blue', texto: 'Aclarar qué te importa y cómo quieres ser en tus relaciones, tu trabajo y tu vida.' },
+  { label: 'Acción comprometida', color: 'hx-white', texto: 'Dar pasos concretos en esa dirección, incluso cuando aparece el malestar.' },
+  { label: 'Yo como contexto', color: 'hx-blue', texto: 'Descubrir una perspectiva desde la que observas tu experiencia sin que te atrape.' },
+  { label: 'Defusión', color: 'hx-white', texto: 'Ver los pensamientos como lo que son, palabras e imágenes, y no como órdenes.' },
+  { label: 'Aceptación', color: 'hx-blue', texto: 'Hacer espacio a emociones y sensaciones difíciles en lugar de pelear con ellas.' },
+];
+---
+
+<Base
+  title="Cómo trabajo"
+  description="Psicoterapia conductual-contextual: análisis funcional, flexibilidad psicológica y ciencia del comportamiento aplicada a tu historia."
+  waMessage={waMessages.agendar}
+>
+  <PageHero
+    eyebrow="02 · Método"
+    title="¿Cómo trabajo?"
+    crumb="Cómo trabajo"
+    bg="deep"
+    lead="Imagina que lo que haces, sientes y piensas no aparece de la nada: tiene una historia y ocurre en un contexto. En terapia miramos juntos qué función cumplen hoy tus formas de responder, qué te dan y qué te cuestan."
+  >
+    <div class="phero__chips">
+      <a href="#motivos">Motivos de consulta</a>
+      <a href="#analisis">Análisis funcional</a>
+      <a href="#flexibilidad">Flexibilidad psicológica</a>
+      <a href="#ciencia">Ciencia contextual</a>
+    </div>
+  </PageHero>
+
+  <section class="sec bg-white">
+    <div class="wrap cards" data-reveal-group>
+      {
+        principios.map((p, i) => (
+          <article class="pcard">
+            <span class:list={['hxb', 'hxb--sm', colores[i % 3]]} aria-hidden="true" />
+            <h2>{p.titulo}</h2>
+            <p>{p.texto}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sec bg-dots" id="motivos">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">Motivos de consulta</p>
+        <h2 class="h2 h2--xl">¿En qué puedo acompañarte?</h2>
+        <p class="txt">Muchas veces, lo que hoy te hace sufrir empezó como una forma razonable de protegerte. No necesitas ponerle nombre para empezar.</p>
+      </div>
+      <div class="split__wide stack">
+        <ul class="chips chips--lg" data-reveal-group>
+          {motivos.map((m, i) => <li class="chip chip--outline"><span class:list={['hexdot', puntos[i % 3]]} aria-hidden="true" />{m}</li>)}
+        </ul>
+        <div class="note note--cream" data-reveal>
+          <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+          <p>
+            ¿No ves aquí lo que estás viviendo? Igual puedes{' '}
+            <a href={whatsappUrl(waMessages.general)} target="_blank" rel="noopener noreferrer">escribirme</a>{' '}y conversamos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-graph line-top" id="analisis">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">Análisis funcional</p>
+        <h2 class="h2 h2--xl">Antes de cambiar algo, entendemos para qué funciona</h2>
+        <p class="txt">En lugar de quedarnos en la etiqueta, miramos tres piezas y cómo se relacionan. Un ejemplo cotidiano:</p>
+      </div>
+      <div class="abc" data-reveal-group>
+        <div class="abc__card">
+          <span class="hxb hx-navy" aria-hidden="true">A</span>
+          <h3>Contexto</h3>
+          <p>¿Dónde, cuándo y con quién aparece? ¿Qué pensamientos, recuerdos o sensaciones lo anticipan?</p>
+          <p class="abc__ex">Se acerca una reunión y aparece el pensamiento “voy a quedar en ridículo”.</p>
+        </div>
+        <div class="abc__card">
+          <span class="hxb hx-blue" aria-hidden="true">B</span>
+          <h3>Conducta</h3>
+          <p>¿Qué haces entonces? Lo que se ve y lo que no: evitar, rumiar, discutir, aislarte, revisar una y otra vez.</p>
+          <p class="abc__ex">Pones una excusa y no te presentas.</p>
+        </div>
+        <div class="abc__card">
+          <span class="hxb hx-yellow" aria-hidden="true">C</span>
+          <h3>Consecuencias</h3>
+          <p><strong>A corto plazo:</strong> alivio inmediato. Por eso se repite.</p>
+          <p><strong>A largo plazo:</strong> la ansiedad crece y te alejas de lo que te importa.</p>
+          <p class="abc__ex abc__ex--cream">Ahí está la llave: no en el pensamiento, sino en lo que mantiene el patrón.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-navy on-dark" id="flexibilidad">
+    <div class="wrap split split--center">
+      <div class="hexaflex" data-reveal="zoom" role="img" aria-label="Diagrama de la flexibilidad psicológica con sus seis procesos alrededor">
+        <div class="hexaflex__ring" aria-hidden="true"></div>
+        <div class="hexaflex__ring-in" aria-hidden="true"></div>
+        <div class="hexaflex__core" aria-hidden="true">Flexibilidad psicológica</div>
+        {hexaflex.map((h, i) => <div class:list={['hexaflex__node', `n${i + 1}`, h.color]} aria-hidden="true">{h.label}</div>)}
+      </div>
+      <div class="split__wide stack">
+        <p class="kicker kicker--light" data-reveal>Hacia dónde vamos</p>
+        <h2 class="h2 h2--xl h2--light" data-reveal>Flexibilidad psicológica</h2>
+        <p class="txt txt--light" data-reveal>
+          Es la capacidad de estar en contacto con lo que sientes y piensas, tal como es, y aun así elegir actuar según lo que te importa.
+          No es un rasgo fijo: se entrena, como cualquier otra habilidad.
+        </p>
+        <ul class="hflist" data-reveal-group>
+          {
+            hexaflex.map((h) => (
+              <li>
+                <span class:list={['hxb', 'hxb--xs', h.color]} aria-hidden="true" />
+                <span>
+                  <b>{h.label}</b>
+                  <span>{h.texto}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-blue" id="ciencia">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="kicker kicker--light">Ciencia conductual contextual</p>
+        <h2 class="h2 h2--xl h2--light">Ciencia al servicio de tu vida, no al revés</h2>
+        <p class="txt txt--light">
+          La terapia contextual nace de décadas de investigación sobre cómo aprendemos, cómo el lenguaje transforma nuestra experiencia y
+          qué ayuda de verdad a cambiar.
+        </p>
+      </div>
+      <div class="cards" data-reveal-group>
+        <div class="sci">
+          <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.2"></circle></svg>
+          <h3>Lo que importa es si funciona</h3>
+          <p>No discutimos si un pensamiento es verdadero o falso, sino si actuar desde él te acerca o te aleja de lo que valoras. Eso es el contextualismo funcional.</p>
+        </div>
+        <div class="sci">
+          <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6l-5.5 9.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"></path><path d="M7.5 15h9"></path></svg>
+          <h3>Principios, no recetas</h3>
+          <p>Trabajamos con principios del comportamiento estudiados en laboratorio y en clínica, aplicados a tu historia concreta: por eso cada proceso es distinto.</p>
+        </div>
+        <div class="sci">
+          <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m7 15 4-4 3 3 5-6"></path></svg>
+          <h3>Medimos juntos el cambio</h3>
+          <p>Revisamos sesión a sesión si lo que hacemos te está sirviendo. Si algo no funciona, no insistimos: ajustamos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Pager />
+  <Cta />
+</Base>

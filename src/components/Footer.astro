@@ -1,36 +1,37 @@
 ---
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.png';
 import { site, footerNav, whatsappUrl } from '../config/site';
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="site-footer bg-gray">
+<footer class="site-footer site-footer--navy bg-navy">
+  <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="wrap site-footer__grid">
     <div class="site-footer__about">
-      <a class="site-footer__logo" href="/" aria-label="Ir al inicio">
-        <Image src={logo} alt="Logo Leo Eyzaguirre, Psicoterapeuta" width={154} height={64} />
+      <a class="wordmark" href="/" aria-label="Leo Eyzaguirre, psicoterapeuta. Ir al inicio">
+        <b>Leo Eyzaguirre</b>
+        <span>PSICOTERAPEUTA</span>
       </a>
-      <p>Terapia presencial en La Paz, Bolivia, y online, en Bolivia y el exterior.</p>
+      <p>Psicoterapia conductual-contextual basada en evidencia. Presencial en La Paz, Bolivia, y online en Bolivia y el exterior.</p>
     </div>
     <nav aria-label="Pie de página">
       <h2>Secciones</h2>
-      <ul>
+      <ul class="site-footer__links">
         {footerNav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
       </ul>
     </nav>
     <div>
       <h2>Contacto</h2>
       <ul>
-        <li><a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">WhatsApp: {site.whatsappDisplay}</a></li>
-        {site.instagram.map((ig) => <li><a href={ig.url} target="_blank" rel="noopener noreferrer">{ig.handle}</a></li>)}
-        <li>{site.address.short}</li>
+        <li><a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">WhatsApp · {site.whatsappDisplay}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        {site.instagram.map((ig) => <li><a href={ig.url} target="_blank" rel="noopener noreferrer">Instagram · {ig.handle}</a></li>)}
+        <li>{site.address.full}</li>
       </ul>
     </div>
   </div>
   <div class="wrap site-footer__bottom">
     <span>© {year} {site.fullName}</span>
-    <span>{site.roleShort}</span>
+    <span>Si estás en crisis o en riesgo, acude al servicio de emergencias más cercano.</span>
   </div>
 </footer>

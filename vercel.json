@@ -3,6 +3,13 @@
   "framework": "astro",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/servicios",
+      "destination": "/quien-soy",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
