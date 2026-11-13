@@ -35,6 +35,7 @@ export const nav = [
   { href: '/tarifas', label: 'Tarifas' },
   { href: '/hoja-de-vida', label: 'Hoja de vida' },
   { href: '/preguntas-frecuentes', label: 'Preguntas' },
+  { href: '/recursos', label: 'Recursos' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;
 
@@ -47,6 +48,7 @@ export const footerNav = [
   { href: '/hoja-de-vida', label: 'Hoja de vida' },
   { href: '/profesionales', label: 'Para profesionales' },
   { href: '/blog', label: 'Blog' },
+  { href: '/recursos', label: 'Recursos' },
   { href: '/preguntas-frecuentes', label: 'Preguntas frecuentes' },
   { href: '/contacto', label: 'Contacto' },
   { href: '/privacidad', label: 'Privacidad' },

@@ -759,9 +759,9 @@ a.ccard:hover { transform: translateY(-5px); box-shadow: 0 22px 44px rgba(0, 54,
 .wa-big .eyebrow { color: var(--yellow); }
 .ccard .icon, .ccard svg { flex-shrink: 0; }
 
-/* Menú de 9 secciones: una sola línea por enlace */
+/* Menú de 10 secciones: una sola línea por enlace */
 @media (min-width: 1181px) {
-  .nav a:not(.btn) { padding: 10px 9px; font-size: 14.5px; white-space: nowrap; }
-  .nav a:not(.btn)::after { left: 9px; right: 9px; }
+  .nav a:not(.btn) { padding: 10px 6px; font-size: 13.5px; white-space: nowrap; }
+  .nav a:not(.btn)::after { left: 6px; right: 6px; }
   .nav .btn { margin-left: 6px; white-space: nowrap; }
 }

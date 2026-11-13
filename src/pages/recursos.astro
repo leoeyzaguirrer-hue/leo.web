@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Pager from '../components/Pager.astro';
+import Icon from '../components/Icon.astro';
+
+// PENDIENTE: el contenido de cada grupo se agregará más adelante.
+const grupos = [
+  {
+    id: 'consultantes',
+    icon: 'heart',
+    color: 'hx-yellow',
+    titulo: 'Para consultantes',
+    texto: 'Materiales para acompañar tu proceso de terapia.',
+  },
+  {
+    id: 'clinicos',
+    icon: 'book',
+    color: 'hx-blue',
+    titulo: 'Recursos clínicos',
+    texto: 'Materiales para psicólogos y terapeutas.',
+  },
+] as const;
+---
+
+<Base title="Recursos" description="Recursos de psicología contextual para consultantes y para profesionales clínicos.">
+  <PageHero
+    eyebrow="Materiales"
+    title="Recursos"
+    bg="deep"
+    lead="Materiales de psicología contextual, para consultantes y para clínicos."
+  />
+
+  <section class="sec bg-dots">
+    <div class="wrap stack stack--lg">
+      <div class="cards cards--wide" data-reveal-group>
+        {
+          grupos.map((g) => (
+            <section class="box bg-white" id={g.id}>
+              <span class:list={['hxb', g.color]} aria-hidden="true">
+                <Icon name={g.icon} size={24} />
+              </span>
+              <h2>{g.titulo}</h2>
+              <p class="txt">{g.texto}</p>
+              <p>
+                <span class="chip">Próximamente</span>
+              </p>
+            </section>
+          ))
+        }
+      </div>
+      <p class="center" data-reveal>
+        <a class="link-arrow" href="/blog">Mientras tanto, visita el blog <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+
+  <Pager />
+</Base>
