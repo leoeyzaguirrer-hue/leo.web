@@ -25,6 +25,41 @@
     });
   }
 
+  // --- Desplegables del menú ---
+  var groups = document.querySelectorAll('[data-dropdown]');
+  function closeGroups(except) {
+    groups.forEach(function (g) {
+      if (g === except) return;
+      g.classList.remove('is-open');
+      var b = g.querySelector('.nav__trigger');
+      if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+  groups.forEach(function (g) {
+    var b = g.querySelector('.nav__trigger');
+    if (!b) return;
+    b.addEventListener('click', function () {
+      var open = b.getAttribute('aria-expanded') !== 'true';
+      closeGroups(g);
+      g.classList.toggle('is-open', open);
+      b.setAttribute('aria-expanded', String(open));
+    });
+    g.addEventListener('focusout', function (e) {
+      if (!g.contains(e.relatedTarget) && window.matchMedia('(min-width: 901px)').matches) closeGroups();
+    });
+  });
+  if (groups.length) {
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('[data-dropdown]')) closeGroups();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var open = document.querySelector('[data-dropdown].is-open');
+      closeGroups();
+      if (open) open.querySelector('.nav__trigger').focus();
+    });
+  }
+
   // --- Cabecera y barra de progreso al hacer scroll ---
   var header = document.querySelector('[data-header]');
   var bar = document.querySelector('[data-progress]');
