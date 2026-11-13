@@ -26,6 +26,7 @@ export const site = {
   },
 } as const;
 
+/** Orden lineal de las secciones (lo usan los enlaces «Anterior / Siguiente»). */
 export const nav = [
   { href: '/', label: 'Inicio' },
   { href: '/quien-soy', label: 'Quién soy' },
@@ -38,6 +39,51 @@ export const nav = [
   { href: '/recursos', label: 'Recursos' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;
+
+/** Menú principal agrupado: pocas opciones arriba y el detalle en desplegables. */
+export interface MenuLink {
+  href: string;
+  label: string;
+  desc?: string;
+}
+export interface MenuGroup {
+  label: string;
+  items: MenuLink[];
+}
+export const menu: (MenuLink | MenuGroup)[] = [
+  { href: '/', label: 'Inicio' },
+  {
+    label: 'Sobre mí',
+    items: [
+      { href: '/quien-soy', label: 'Quién soy', desc: 'Mi presentación y la base de mi trabajo' },
+      { href: '/hoja-de-vida', label: 'Hoja de vida', desc: 'Formación, experiencia clínica y docencia' },
+      { href: '/profesionales', label: 'Para profesionales', desc: 'Supervisión y formación para terapeutas' },
+    ],
+  },
+  {
+    label: 'Terapia',
+    items: [
+      { href: '/como-trabajo', label: 'Cómo trabajo', desc: 'Análisis funcional y flexibilidad psicológica' },
+      { href: '/enfoques', label: 'Enfoques', desc: 'ACT, FAP, Activación Conductual y DBT' },
+      { href: '/proceso', label: 'El proceso', desc: 'Paso a paso, presencial u online' },
+    ],
+  },
+  {
+    label: 'Consulta',
+    items: [
+      { href: '/tarifas', label: 'Tarifas', desc: 'Precios por sesión y paquetes' },
+      { href: '/preguntas-frecuentes', label: 'Preguntas frecuentes', desc: 'Primera sesión, pagos y confidencialidad' },
+      { href: '/contacto', label: 'Contacto', desc: 'WhatsApp, correo y consultorio' },
+    ],
+  },
+  {
+    label: 'Recursos',
+    items: [
+      { href: '/recursos', label: 'Recursos', desc: 'Materiales para consultantes y clínicos' },
+      { href: '/blog', label: 'Blog', desc: 'Artículos de psicología contextual' },
+    ],
+  },
+];
 
 export const footerNav = [
   { href: '/quien-soy', label: 'Quién soy' },
