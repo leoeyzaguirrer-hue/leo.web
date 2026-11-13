@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 import WhatsAppIcon from './WhatsAppIcon.astro';
 import { nav, whatsappUrl, waMessages } from '../config/site';
 
-const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+const path = Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
 const isCurrent = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
 ---
 

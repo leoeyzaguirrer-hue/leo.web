@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 // La URL pública vive en un solo lugar. Al comprar el dominio:
 // define SITE_URL en Vercel (Settings → Environment Variables) o cambia el valor por defecto.
-const site = process.env.SITE_URL || 'https://psico-leo.vercel.app';
+const site = process.env.SITE_URL || 'https://leoweb-phi.vercel.app';
 
 export default defineConfig({
   site,
