@@ -6,9 +6,9 @@ export const site = {
   role: 'Psicólogo y psicoterapeuta conductual-contextual',
   roleShort: 'Psicoterapeuta Conductual-Contextual',
   // Título de la portada en Google y al compartir: lo que la gente busca, no la jerga.
-  homeTitle: 'Psicólogo en La Paz y online · Ansiedad, depresión y duelo',
+  homeTitle: 'Psicólogo en La Paz y online · Ansiedad, depresión, duelo y pareja',
   description:
-    'Psicólogo en La Paz: terapia para ansiedad, depresión, falta de sentido, duelo y rupturas de pareja, con terapias contextuales basadas en evidencia. Presencial en La Paz y online.',
+    'Psicólogo en La Paz: terapia para ansiedad, depresión, falta de sentido, duelo, rupturas y problemas de pareja, con terapias contextuales basadas en evidencia. Presencial en La Paz y online.',
   locale: 'es-BO',
 
   // Año en que empezó la atención clínica. Los «años de experiencia» se calculan solos a partir de aquí.
@@ -71,7 +71,7 @@ export const menu: (MenuLink | MenuGroup)[] = [
     items: [
       { href: '/terapia-ansiedad', label: 'Terapia para la ansiedad', desc: 'Preocupación, pánico y ansiedad social' },
       { href: '/terapia-depresion', label: 'Depresión y sentido de vida', desc: 'Desánimo, vacío y falta de rumbo' },
-      { href: '/terapia-duelo', label: 'Duelo y rupturas de pareja', desc: 'Muerte de un ser querido, separación o divorcio' },
+      { href: '/terapia-duelo', label: 'Duelo, rupturas y pareja', desc: 'Pérdidas, separaciones y conflictos de pareja' },
       { href: '/como-trabajo', label: 'Cómo trabajo', desc: 'Análisis funcional y flexibilidad psicológica' },
       { href: '/enfoques', label: 'Enfoques', desc: 'ACT, FAP, Activación Conductual y DBT' },
       { href: '/proceso', label: 'El proceso', desc: 'Paso a paso, presencial u online' },
@@ -98,7 +98,7 @@ export const footerNav = [
   { href: '/quien-soy', label: 'Quién soy' },
   { href: '/terapia-ansiedad', label: 'Terapia para la ansiedad' },
   { href: '/terapia-depresion', label: 'Depresión y sentido de vida' },
-  { href: '/terapia-duelo', label: 'Duelo y rupturas de pareja' },
+  { href: '/terapia-duelo', label: 'Duelo, rupturas y pareja' },
   { href: '/como-trabajo', label: 'Cómo trabajo' },
   { href: '/enfoques', label: 'Enfoques' },
   { href: '/proceso', label: 'El proceso' },

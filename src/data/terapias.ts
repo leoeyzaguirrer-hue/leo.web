@@ -216,27 +216,27 @@ export const depresion: Terapia = {
 export const duelo: Terapia = {
   slug: 'terapia-duelo',
   meta: {
-    title: 'Terapia para el duelo y las rupturas de pareja en La Paz y online',
+    title: 'Terapia para el duelo, las rupturas y los problemas de pareja en La Paz y online',
     description:
-      'Psicoterapia para el duelo por la muerte de un ser querido y el duelo por ruptura amorosa, separación o divorcio, con ACT y FAP. Presencial en Irpavi, La Paz, y online.',
+      'Psicoterapia individual para el duelo, la ruptura amorosa, la separación o el divorcio y los problemas de pareja, con ACT y FAP. Presencial en Irpavi, La Paz, y online.',
   },
   hero: {
-    eyebrow: 'Terapia para el duelo y las rupturas de pareja · La Paz y online',
-    title: 'Cuando perder a alguien te deja sin piso',
-    crumb: 'Terapia para el duelo',
-    lead: 'Por una muerte o por una separación, el duelo es el precio de haber querido. No se trata de olvidar, sino de encontrar cómo seguir viviendo con lo que pasó.',
+    eyebrow: 'Terapia para el duelo, las rupturas y los problemas de pareja · La Paz y online',
+    title: 'Cuando una pérdida o una relación te deja sin piso',
+    crumb: 'Terapia para el duelo y la pareja',
+    lead: 'Una muerte, una separación o una relación que se volvió difícil pueden dejarte sin rumbo. En terapia individual encontramos cómo seguir viviendo con lo que pasó y cómo vincularte de una forma que te haga bien.',
   },
   senales: [
     'No puedes dejar de pensar en esa persona',
     'Revisas sus redes, fotos o mensajes una y otra vez',
-    'Evitas lugares, canciones o personas que te la recuerdan',
     'Sientes culpa por lo que hiciste o no hiciste',
-    'Te cuesta imaginar tu vida sin esa persona',
     'Sientes que los demás esperan que ya lo hayas superado',
-    'El dolor no se alivia con el paso del tiempo',
+    'Las discusiones con tu pareja se repiten y no llevan a nada',
+    'Una infidelidad te dejó sin saber qué hacer',
+    'Dudas entre seguir o terminar la relación',
     'Te cuesta volver a confiar o a vincularte',
   ],
-  nota: `El duelo es una respuesta natural ante una pérdida. Cuando el dolor no se alivia con el tiempo o te impide vivir, vale la pena consultarlo. ${notaEvaluacion}`,
+  nota: `El dolor por una pérdida o por una relación difícil es una respuesta natural. Cuando no se alivia con el tiempo o te impide vivir, vale la pena consultarlo. ${notaEvaluacion}`,
   ciclo: {
     titulo: 'Cuando el dolor queda en pausa',
     intro: 'Ante una pérdida, es natural buscar a la persona o huir del dolor. Cuando eso se vuelve la regla, el duelo se estanca. Un ejemplo:',
@@ -258,31 +258,34 @@ export const duelo: Terapia = {
     },
   },
   como: {
-    titulo: 'Un espacio para el dolor y para tu vida',
+    titulo: 'Un espacio para el dolor, tus vínculos y tu vida',
     intro:
       'Trabajo con la Terapia de Aceptación y Compromiso (ACT) y la Psicoterapia Analítica Funcional (FAP), que pone el foco en los vínculos, integradas con el análisis funcional.',
     pasos: [
       {
-        titulo: 'Entender tu duelo',
-        texto: 'En las primeras dos sesiones conversamos sobre la pérdida, cómo la estás viviendo y qué te está costando más. Es el análisis funcional: el mapa de tu duelo.',
+        titulo: 'Entender lo que estás viviendo',
+        texto: 'En las primeras dos sesiones conversamos sobre la pérdida o la relación, cómo la estás viviendo y qué te está costando más. Es el análisis funcional: el mapa de lo que te pasa.',
       },
       {
         titulo: 'Hacer espacio al dolor',
         texto: 'Aprendes a sentir la tristeza, la rabia o la culpa sin que te arrastren. El dolor no se apura, pero tampoco tiene por qué dirigir tu vida.',
       },
       {
-        titulo: 'Reconstruir tu vida',
-        texto: 'Aclaramos qué te importa hoy y das pasos para volver a tus relaciones, tus proyectos y tu día a día, llevando contigo lo que esa persona significó.',
+        titulo: 'Cuidar tus vínculos',
+        texto: 'Miramos cómo te relacionas con las personas que te importan y, dentro de la misma terapia, ensayamos formas nuevas de vincularte que luego llevas a tu vida.',
       },
-      revisarAvance,
+      {
+        titulo: 'Reconstruir tu vida',
+        texto: 'Aclaramos qué te importa hoy y das pasos hacia tus relaciones, tus proyectos y tu día a día, llevando contigo lo que viviste.',
+      },
     ],
   },
   noHaremos: {
     titulo: 'Sin apuros ni «ya deberías estar mejor»',
     texto:
-      'Cada duelo tiene su tiempo y no voy a apurar el tuyo. Tampoco te voy a pedir que olvides a nadie ni que te sientas bien antes de estar listo. Lo que sí hacemos es que el dolor deje de decidir por ti.',
+      'Cada proceso tiene su tiempo y no voy a apurar el tuyo. Tampoco te voy a pedir que olvides a nadie, ni voy a decidir por ti si quedarte o irte de una relación: esa decisión es tuya, y te acompaño a tomarla desde lo que te importa.',
   },
-  faqTitulo: 'Preguntas sobre el duelo',
+  faqTitulo: 'Preguntas sobre el duelo y la pareja',
   faq: [
     {
       q: '¿Cuánto dura un duelo?',
@@ -297,10 +300,10 @@ export const duelo: Terapia = {
       a: 'No. No se trata de olvidar, sino de encontrar un lugar para lo que viviste y seguir adelante con tu vida.',
     },
     {
-      q: '¿Atiendes duelos por muerte y por separación?',
-      a: 'Sí, los dos. Son pérdidas distintas, pero comparten mucho: el dolor, la añoranza y la pregunta de cómo seguir.',
+      q: '¿Atiendes problemas de pareja?',
+      a: 'Sí, en terapia individual: acompaño a una persona con lo que le pasa en su relación, ya sean conflictos que se repiten, una infidelidad o la duda de seguir o terminar. Si buscan terapia de pareja, con los dos juntos, escríbeme y lo conversamos.',
     },
     online(', y puedes hacerla desde un lugar donde te sientas cómodo para hablar de algo tan personal.'),
   ],
-  whatsapp: 'Hola Leo, vi tu página sobre duelo y quisiera agendar una primera sesión.',
+  whatsapp: 'Hola Leo, vi tu página sobre duelo y pareja y quisiera agendar una primera sesión.',
 };

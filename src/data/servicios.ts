@@ -81,11 +81,11 @@ export const puertas: {
   {
     id: 'duelo',
     href: '/terapia-duelo',
-    titulo: 'Duelo y rupturas de pareja',
-    texto: 'Cuando perdiste a alguien, por una muerte o por una separación, y el dolor no te deja seguir con tu vida.',
-    senales: ['«No puedo dejar de pensar en esa persona»', '«Siento que perdí una parte de mí»', '«Todos esperan que ya lo haya superado»'],
+    titulo: 'Duelo, rupturas y problemas de pareja',
+    texto: 'Cuando perdiste a alguien, por una muerte o una separación, o cuando tu relación se volvió una fuente de dolor.',
+    senales: ['«No puedo dejar de pensar en esa persona»', '«Discutimos siempre por lo mismo»', '«Todos esperan que ya lo haya superado»'],
     enfoque: 'Con ACT y FAP',
-    items: ['Muerte de un ser querido', 'Ruptura amorosa', 'Separación o divorcio', 'Duelo que se alarga'],
+    items: ['Muerte de un ser querido', 'Ruptura amorosa', 'Separación o divorcio', 'Conflictos de pareja', 'Infidelidad'],
     color: 'hx-navy',
   },
 ];
