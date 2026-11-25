@@ -5,7 +5,8 @@ import Cta from '../components/Cta.astro';
 import Icon from '../components/Icon.astro';
 import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import foto from '../assets/leo-consultorio.jpg';
-import { site, whatsappUrl, waMessages } from '../config/site';
+import { whatsappUrl, waMessages, yearsOfPractice } from '../config/site';
+import { puertas } from '../data/servicios';
 
 // Cada tarjeta lleva a su propia página.
 const secciones = [
@@ -25,13 +26,9 @@ const secciones = [
   <section class="hero bg-navy">
     <div class="wrap hero__grid">
       <div class="hero__text">
-        <p class="eyebrow">Psicoterapia basada en evidencia</p>
-        <h1 class="h1">Hola, soy Leo</h1>
-        <p class="hero__role">{site.role}</p>
-        <p class="lead hero__lead">
-          No vamos a pelear contra lo que sientes ni a buscar qué está “roto” en ti. Vamos a entender para qué funciona lo que haces en
-          tu contexto, y a construir contigo pasos concretos hacia una vida que valga la pena.
-        </p>
+        <p class="eyebrow">Psicoterapia con terapias contextuales</p>
+        <h1 class="h1 h1--hero">Una vida que valga la pena, incluso con lo que duele</h1>
+        <p class="lead hero__lead">Hola, soy Leo, psicólogo. Te acompaño cuando la ansiedad, la tristeza o una pérdida lo ocupan todo.</p>
         <div class="btn-row">
           <a class="btn btn--primary" href={whatsappUrl(waMessages.agendar)} target="_blank" rel="noopener noreferrer">
             <WhatsAppIcon size={22} /> Agendar por WhatsApp
@@ -62,12 +59,55 @@ const secciones = [
     </div>
     <div class="creds">
       <ul class="wrap creds__list">
+        <li><span class="hexdot" aria-hidden="true"></span>{yearsOfPractice} años de experiencia clínica</li>
         <li><span class="hexdot" aria-hidden="true"></span>Máster en Análisis Funcional del Comportamiento</li>
         <li><span class="hexdot" aria-hidden="true"></span>Formación en ACT, FAP, DBT, AC, PBBT e IBT</li>
         <li><span class="hexdot" aria-hidden="true"></span>Socio fundador de la ABTCC</li>
       </ul>
     </div>
     <div class="tricolor" aria-hidden="true"><span></span><span></span><span></span></div>
+  </section>
+
+  <!-- Qué te trae: las tres puertas de entrada (nicho) -->
+  <section class="sec bg-white" id="que-te-trae">
+    <div class="wrap">
+      <div class="section__head section__head--center" data-reveal>
+        <p class="eyebrow eyebrow--blue">En qué me especializo</p>
+        <h2 class="h2 h2--xl">¿Qué te trae?</h2>
+        <p class="txt">No necesitas ponerle nombre exacto a lo que te pasa para empezar. Estas son las situaciones que más acompaño.</p>
+      </div>
+      <div class="explore" data-reveal-group>
+        {
+          puertas.map((p, i) => (
+            <a class="xcard" href={`/como-trabajo#${p.id}`}>
+              <span class="xcard__top">
+                <span class:list={['hxb', p.color]}>{String(i + 1).padStart(2, '0')}</span>
+                <span class="xcard__tag">Terapia para</span>
+              </span>
+              <span class="xcard__title">{p.titulo}</span>
+              <p>{p.texto}</p>
+              <ul class="xcard__voices" aria-label="Lo que suelen decirme">
+                {p.senales.map((s) => <li>{s}</li>)}
+              </ul>
+              <span class="xcard__method">{p.enfoque}</span>
+              <span class="link-arrow">Cómo te acompaño <Icon name="arrow" size={18} /></span>
+            </a>
+          ))
+        }
+      </div>
+      <div class="unsure" data-reveal>
+        <div class="unsure__text">
+          <p class="unsure__title">¿No sabes cómo llamar lo que te pasa?</p>
+          <p>
+            No hace falta. También acompaño trauma, emociones muy intensas, dolor persistente, relaciones difíciles y más. Escríbeme y lo
+            vemos juntos. <a href="/como-trabajo#motivos">Ver todos los motivos</a>
+          </p>
+        </div>
+        <a class="btn btn--wa" href={whatsappUrl(waMessages.noSe)} target="_blank" rel="noopener noreferrer">
+          <WhatsAppIcon size={20} /> Conversarlo por WhatsApp
+        </a>
+      </div>
+    </div>
   </section>
 
   <!-- Explora: cada tarjeta lleva a su página -->
@@ -102,8 +142,8 @@ const secciones = [
       <span class="hxb hxb--sm hx-yellow" aria-hidden="true"></span>
       <p class="quote-band__text">El objetivo no es dejar de sentir. Es que el malestar deje de decidir por ti.</p>
       <p class="txt txt--light">
-        Lo que haces, sientes y piensas tiene una historia y ocurre en un contexto. Cuando entendemos para qué funciona, podemos elegir
-        qué hacer distinto.
+        No vamos a pelear contra lo que sientes: vamos a entender para qué funciona lo que haces y a dar pasos concretos hacia lo que te
+        importa. Para eso trabajo con terapias contextuales basadas en evidencia: ACT, FAP, Activación Conductual y DBT.
       </p>
       <a class="link-arrow" href="/como-trabajo">Ver cómo trabajo <Icon name="arrow" size={18} /></a>
     </div>

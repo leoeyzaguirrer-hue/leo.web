@@ -5,9 +5,14 @@ export const site = {
   fullName: 'Leonardo Eyzaguirre Rojas',
   role: 'Psicólogo y psicoterapeuta conductual-contextual',
   roleShort: 'Psicoterapeuta Conductual-Contextual',
+  // Título de la portada en Google y al compartir: lo que la gente busca, no la jerga.
+  homeTitle: 'Psicólogo en La Paz y online · Ansiedad, depresión y duelo',
   description:
-    'Psicoterapia conductual-contextual basada en evidencia. Atención presencial en La Paz, Bolivia, y online en Bolivia y el exterior.',
+    'Psicólogo en La Paz: terapia para ansiedad, depresión, falta de sentido, duelo y rupturas de pareja, con terapias contextuales basadas en evidencia. Presencial en La Paz y online.',
   locale: 'es-BO',
+
+  // Año en que empezó la atención clínica. Los «años de experiencia» se calculan solos a partir de aquí.
+  clinicalSince: 2017,
 
   // WhatsApp: solo dígitos, con código de país y sin el signo +.
   whatsapp: '59165677086',
@@ -15,9 +20,7 @@ export const site = {
 
   email: 'leo.eyzaguirrer@gmail.com',
   instagram: [
-    { handle: '@leo.eyzaguirre', url: 'https://www.instagram.com/leo.eyzaguirre/' },
-    { handle: '@espacio.contextual.bo', url: 'https://www.instagram.com/espacio.contextual.bo/' },
-  ],
+    { handle: '@leo.eyzaguirre', url: 'https://www.instagram.com/leo.eyzaguirre/' },  ],
   address: {
     short: 'Irpavi, Calle 16, La Paz – Bolivia',
     full: 'Calle Final Irpavi, Edificio «Palmeras», La Paz',
@@ -25,6 +28,9 @@ export const site = {
     country: 'BO',
   },
 } as const;
+
+/** Años de experiencia clínica, calculados al construir el sitio. */
+export const yearsOfPractice = new Date().getFullYear() - site.clinicalSince;
 
 /** Orden lineal de las secciones (lo usan los enlaces «Anterior / Siguiente»). */
 export const nav = [
@@ -114,4 +120,5 @@ export const waMessages = {
   tarifasExterior: 'Hola Leo, vi tus tarifas y quisiera agendar una sesión online (estoy fuera de Bolivia).',
   profesionales: 'Hola Leo, soy profesional de la psicología y quisiera información sobre supervisión o formación.',
   blog: 'Hola Leo, leí tu blog y quisiera hacerte una consulta.',
+  noSe: 'Hola Leo, no sé bien cómo llamar lo que me pasa, pero quisiera conversarlo.',
 } as const;
