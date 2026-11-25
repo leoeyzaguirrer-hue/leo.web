@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Pager from '../components/Pager.astro';
 import Cta from '../components/Cta.astro';
+import Icon from '../components/Icon.astro';
 import { whatsappUrl, waMessages } from '../config/site';
 import { principios, puertas, tambien } from '../data/servicios';
 
@@ -59,7 +60,7 @@ const hexaflex = [
       <div class="sec__head" data-reveal>
         <p class="kicker">Motivos de consulta</p>
         <h2 class="h2 h2--xl">¿En qué puedo acompañarte?</h2>
-        <p class="txt">Muchas veces, lo que hoy te hace sufrir empezó como una forma razonable de protegerte. No necesitas ponerle nombre para empezar.</p>
+        <p class="txt">Muchas veces, lo que hoy te hace sufrir empezó como una forma razonable de protegerte. En las primeras sesiones lo evaluamos juntos.</p>
       </div>
       <div class="cards" data-reveal-group>
         {
@@ -71,6 +72,7 @@ const hexaflex = [
               <ul class="chips">
                 {p.items.map((it) => <li class="chip">{it}</li>)}
               </ul>
+              {p.href && <a class="link-arrow" href={p.href}>Ver terapia para {p.titulo.toLowerCase()} <Icon name="arrow" size={18} /></a>}
             </article>
           ))
         }

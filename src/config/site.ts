@@ -69,6 +69,9 @@ export const menu: (MenuLink | MenuGroup)[] = [
   {
     label: 'Terapia',
     items: [
+      { href: '/terapia-ansiedad', label: 'Terapia para la ansiedad', desc: 'Preocupación, pánico y ansiedad social' },
+      { href: '/terapia-depresion', label: 'Depresión y sentido de vida', desc: 'Desánimo, vacío y falta de rumbo' },
+      { href: '/terapia-duelo', label: 'Duelo y rupturas de pareja', desc: 'Muerte de un ser querido, separación o divorcio' },
       { href: '/como-trabajo', label: 'Cómo trabajo', desc: 'Análisis funcional y flexibilidad psicológica' },
       { href: '/enfoques', label: 'Enfoques', desc: 'ACT, FAP, Activación Conductual y DBT' },
       { href: '/proceso', label: 'El proceso', desc: 'Paso a paso, presencial u online' },
@@ -93,6 +96,9 @@ export const menu: (MenuLink | MenuGroup)[] = [
 
 export const footerNav = [
   { href: '/quien-soy', label: 'Quién soy' },
+  { href: '/terapia-ansiedad', label: 'Terapia para la ansiedad' },
+  { href: '/terapia-depresion', label: 'Depresión y sentido de vida' },
+  { href: '/terapia-duelo', label: 'Duelo y rupturas de pareja' },
   { href: '/como-trabajo', label: 'Cómo trabajo' },
   { href: '/enfoques', label: 'Enfoques' },
   { href: '/proceso', label: 'El proceso' },
@@ -120,5 +126,4 @@ export const waMessages = {
   tarifasExterior: 'Hola Leo, vi tus tarifas y quisiera agendar una sesión online (estoy fuera de Bolivia).',
   profesionales: 'Hola Leo, soy profesional de la psicología y quisiera información sobre supervisión o formación.',
   blog: 'Hola Leo, leí tu blog y quisiera hacerte una consulta.',
-  noSe: 'Hola Leo, no sé bien cómo llamar lo que me pasa, pero quisiera conversarlo.',
-} as const;
+  noSe: 'Hola Leo, quisiera consultarte por algo que no vi en la lista de tu página.',} as const;

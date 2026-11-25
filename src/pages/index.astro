@@ -74,12 +74,12 @@ const secciones = [
       <div class="section__head section__head--center" data-reveal>
         <p class="eyebrow eyebrow--blue">En qué me especializo</p>
         <h2 class="h2 h2--xl">¿Qué te trae?</h2>
-        <p class="txt">No necesitas ponerle nombre exacto a lo que te pasa para empezar. Estas son las situaciones que más acompaño.</p>
+        <p class="txt">Estas son las situaciones en las que me especializo. En las primeras sesiones hacemos una evaluación para entender qué te pasa y cómo ayudarte.</p>
       </div>
       <div class="explore" data-reveal-group>
         {
           puertas.map((p, i) => (
-            <a class="xcard" href={`/como-trabajo#${p.id}`}>
+            <a class="xcard" href={p.href ?? `/como-trabajo#${p.id}`}>
               <span class="xcard__top">
                 <span class:list={['hxb', p.color]}>{String(i + 1).padStart(2, '0')}</span>
                 <span class="xcard__tag">Terapia para</span>
@@ -97,10 +97,10 @@ const secciones = [
       </div>
       <div class="unsure" data-reveal>
         <div class="unsure__text">
-          <p class="unsure__title">¿No sabes cómo llamar lo que te pasa?</p>
+          <p class="unsure__title">¿No encuentras aquí lo que te pasa?</p>
           <p>
-            No hace falta. También acompaño trauma, emociones muy intensas, dolor persistente, relaciones difíciles y más. Escríbeme y lo
-            vemos juntos. <a href="/como-trabajo#motivos">Ver todos los motivos</a>
+            También acompaño trauma, emociones muy intensas, dolor persistente, relaciones difíciles y más. Escríbeme y vemos si puedo
+            ayudarte o a quién derivarte. <a href="/como-trabajo#motivos">Ver todos los motivos</a>
           </p>
         </div>
         <a class="btn btn--wa" href={whatsappUrl(waMessages.noSe)} target="_blank" rel="noopener noreferrer">

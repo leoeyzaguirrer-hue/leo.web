@@ -16,7 +16,7 @@ export const primeraSesion: Pregunta[] = [
   },
   {
     q: '¿Y si no sé bien qué me pasa?',
-    a: 'Está bien llegar así. Las primeras sesiones sirven justamente para entenderlo juntos.',
+    a: 'Es muy común. Para eso son las primeras sesiones: hacemos una evaluación para entender qué te está pasando y definir cómo trabajarlo.',
   },
   {
     q: '¿Cuántas sesiones voy a necesitar?',

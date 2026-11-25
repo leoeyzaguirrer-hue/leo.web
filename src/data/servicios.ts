@@ -46,11 +46,21 @@ export const principios = [
 
 /**
  * Las tres «puertas» de entrada: los motivos de consulta en los que me especializo.
- * `id` es el ancla en /como-trabajo; cuando exista la página propia de cada una, se agrega `href`.
+ * `id` es el ancla en /como-trabajo; `href` es su página propia (null mientras no exista).
  */
-export const puertas = [
+export const puertas: {
+  id: string;
+  titulo: string;
+  texto: string;
+  senales: string[];
+  enfoque: string;
+  items: string[];
+  color: string;
+  href: string | null;
+}[] = [
   {
     id: 'ansiedad',
+    href: '/terapia-ansiedad',
     titulo: 'Ansiedad',
     texto: 'Cuando la preocupación no se apaga, el cuerpo vive en alerta y empiezas a dejar de lado lo que te importa para no sentirla.',
     senales: ['«No puedo dejar de darle vueltas»', '«Evito cosas por miedo a sentirme mal»', '«Mi cuerpo está siempre en alerta»'],
@@ -60,6 +70,7 @@ export const puertas = [
   },
   {
     id: 'depresion',
+    href: '/terapia-depresion',
     titulo: 'Depresión y sentido de vida',
     texto: 'Cuando todo cuesta, nada entusiasma o sientes que tu vida perdió el rumbo y quieres volver a una vida con valor.',
     senales: ['«Todo me cuesta el doble»', '«Siento que solo sobrevivo»', '«No sé qué quiero de mi vida»'],
@@ -69,6 +80,7 @@ export const puertas = [
   },
   {
     id: 'duelo',
+    href: '/terapia-duelo',
     titulo: 'Duelo y rupturas de pareja',
     texto: 'Cuando perdiste a alguien, por una muerte o por una separación, y el dolor no te deja seguir con tu vida.',
     senales: ['«No puedo dejar de pensar en esa persona»', '«Siento que perdí una parte de mí»', '«Todos esperan que ya lo haya superado»'],
@@ -76,7 +88,7 @@ export const puertas = [
     items: ['Muerte de un ser querido', 'Ruptura amorosa', 'Separación o divorcio', 'Duelo que se alarga'],
     color: 'hx-navy',
   },
-] as const;
+];
 
 /** Otros motivos que también acompaño, sin página propia por ahora. */
 export const tambien = [
