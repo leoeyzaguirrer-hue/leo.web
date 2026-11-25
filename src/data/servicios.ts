@@ -131,7 +131,8 @@ export const pasos = [
   {
     titulo: 'Primer contacto',
     nota: '',
-    texto: 'Me escribes y coordinamos el día, la hora y la modalidad que mejor te quede.',
+    texto:
+      'Me escribes y coordinamos el día, la hora y la modalidad que mejor te quede. Cuando confirmamos tu primera cita, te envío por WhatsApp un formulario breve con algunos datos y el consentimiento informado. Toma unos 10 minutos.',
   },
   {
     titulo: 'Evaluación inicial',
