@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Pager from '../components/Pager.astro';
 import Cta from '../components/Cta.astro';
 import { whatsappUrl, waMessages } from '../config/site';
-import { principios, motivos } from '../data/servicios';
+import { principios, puertas, tambien } from '../data/servicios';
 
 const colores = ['hx-navy', 'hx-blue', 'hx-yellow'];
 const puntos = ['hexdot--navy', 'hexdot--blue', ''];
@@ -55,15 +55,30 @@ const hexaflex = [
   </section>
 
   <section class="sec bg-dots" id="motivos">
-    <div class="wrap split">
+    <div class="wrap stack stack--lg">
       <div class="sec__head" data-reveal>
         <p class="kicker">Motivos de consulta</p>
         <h2 class="h2 h2--xl">¿En qué puedo acompañarte?</h2>
         <p class="txt">Muchas veces, lo que hoy te hace sufrir empezó como una forma razonable de protegerte. No necesitas ponerle nombre para empezar.</p>
       </div>
-      <div class="split__wide stack">
+      <div class="cards" data-reveal-group>
+        {
+          puertas.map((p) => (
+            <article class="pcard pcard--white" id={p.id}>
+              <span class:list={['hxb', 'hxb--sm', p.color]} aria-hidden="true" />
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+              <ul class="chips">
+                {p.items.map((it) => <li class="chip">{it}</li>)}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+      <div class="stack">
+        <p class="h3" data-reveal>También acompaño</p>
         <ul class="chips chips--lg" data-reveal-group>
-          {motivos.map((m, i) => <li class="chip chip--outline"><span class:list={['hexdot', puntos[i % 3]]} aria-hidden="true" />{m}</li>)}
+          {tambien.map((m, i) => <li class="chip chip--outline"><span class:list={['hexdot', puntos[i % 3]]} aria-hidden="true" />{m}</li>)}
         </ul>
         <div class="note note--cream" data-reveal>
           <span class="hexdot hexdot--lg" aria-hidden="true"></span>

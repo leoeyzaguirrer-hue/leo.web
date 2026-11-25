@@ -25,7 +25,7 @@ const {
   schema = [],
 } = Astro.props;
 
-const pageTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.role}`;
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.homeTitle}`;
 const canonical = new URL(Astro.url.pathname.replace(/\.html$/, '').replace(/\/index$/, '/'), Astro.site);
 const ogImage = new URL('/og.png', Astro.site);
 

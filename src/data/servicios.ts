@@ -44,19 +44,48 @@ export const principios = [
   },
 ];
 
-export const motivos = [
-  'Ansiedad',
-  'Depresión y desánimo',
-  'Estrés crónico',
-  'Dolor persistente',
-  'Ansiedad social',
+/**
+ * Las tres «puertas» de entrada: los motivos de consulta en los que me especializo.
+ * `id` es el ancla en /como-trabajo; cuando exista la página propia de cada una, se agrega `href`.
+ */
+export const puertas = [
+  {
+    id: 'ansiedad',
+    titulo: 'Ansiedad',
+    texto: 'Cuando la preocupación no se apaga, el cuerpo vive en alerta y empiezas a dejar de lado lo que te importa para no sentirla.',
+    senales: ['«No puedo dejar de darle vueltas»', '«Evito cosas por miedo a sentirme mal»', '«Mi cuerpo está siempre en alerta»'],
+    enfoque: 'Con ACT',
+    items: ['Preocupación constante', 'Ataques de pánico', 'Ansiedad social', 'Estrés crónico'],
+    color: 'hx-blue',
+  },
+  {
+    id: 'depresion',
+    titulo: 'Depresión y sentido de vida',
+    texto: 'Cuando todo cuesta, nada entusiasma o sientes que tu vida perdió el rumbo y quieres volver a una vida con valor.',
+    senales: ['«Todo me cuesta el doble»', '«Siento que solo sobrevivo»', '«No sé qué quiero de mi vida»'],
+    enfoque: 'Con Activación Conductual y ACT',
+    items: ['Desánimo y depresión', 'Sensación de vacío', 'Falta de sentido', 'Identidad y propósito'],
+    color: 'hx-yellow',
+  },
+  {
+    id: 'duelo',
+    titulo: 'Duelo y rupturas de pareja',
+    texto: 'Cuando perdiste a alguien, por una muerte o por una separación, y el dolor no te deja seguir con tu vida.',
+    senales: ['«No puedo dejar de pensar en esa persona»', '«Siento que perdí una parte de mí»', '«Todos esperan que ya lo haya superado»'],
+    enfoque: 'Con ACT y FAP',
+    items: ['Muerte de un ser querido', 'Ruptura amorosa', 'Separación o divorcio', 'Duelo que se alarga'],
+    color: 'hx-navy',
+  },
+] as const;
+
+/** Otros motivos que también acompaño, sin página propia por ahora. */
+export const tambien = [
   'Experiencias de trauma',
+  'Emociones muy intensas',
+  'Dolor persistente',
   'Relaciones difíciles',
-  'Sensación de vacío',
   'Autoestima',
   'Aislamiento',
-  'Emociones muy intensas',
-  'Identidad y sentido',
 ];
 
 export const enfoques = [
