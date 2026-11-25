@@ -1,0 +1,150 @@
+---
+// Molde de las páginas por especialidad. El contenido vive en src/data/terapias.ts.
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import Cta from './Cta.astro';
+import Faq from './Faq.astro';
+import Icon from './Icon.astro';
+import type { Terapia } from '../data/terapias';
+
+interface Props {
+  t: Terapia;
+}
+const { t } = Astro.props;
+const colores = ['hx-navy', 'hx-blue', 'hx-yellow', 'hx-navy'];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: t.faq.map((p) => ({
+    '@type': 'Question',
+    name: p.q,
+    acceptedAnswer: { '@type': 'Answer', text: p.a },
+  })),
+};
+---
+
+<Base title={t.meta.title} description={t.meta.description} waMessage={t.whatsapp} schema={[schema]}>
+  <PageHero eyebrow={t.hero.eyebrow} title={t.hero.title} crumb={t.hero.crumb} bg="navy" lead={t.hero.lead}>
+    <div class="phero__chips">
+      <a href="#senales">¿Te pasa esto?</a>
+      <a href="#por-que">Por qué se mantiene</a>
+      <a href="#como">Cómo trabajamos</a>
+      <a href="#preguntas">Preguntas</a>
+    </div>
+  </PageHero>
+
+  <section class="sec bg-dots" id="senales">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">¿Te pasa esto?</p>
+        <h2 class="h2 h2--xl">Algunas formas en que se nota</h2>
+        <p class="txt">No se vive igual en todas las personas. Estas son algunas de las formas más comunes.</p>
+      </div>
+      <div class="split__wide stack">
+        <ul class="chips chips--lg" data-reveal-group>
+          {t.senales.map((s, i) => <li class="chip chip--outline"><span class:list={['hexdot', i % 2 ? 'hexdot--blue' : '']} aria-hidden="true" />{s}</li>)}
+        </ul>
+        <div class="note note--cream" data-reveal>
+          <span class="hexdot hexdot--lg" aria-hidden="true"></span>
+          <p>{t.nota}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-graph line-top" id="por-que">
+    <div class="wrap">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">Por qué se mantiene</p>
+        <h2 class="h2 h2--xl">{t.ciclo.titulo}</h2>
+        <p class="txt">{t.ciclo.intro}</p>
+      </div>
+      <div class="abc" data-reveal-group>
+        <div class="abc__card">
+          <span class="hxb hx-navy" aria-hidden="true">A</span>
+          <h3>{t.ciclo.a.titulo}</h3>
+          <p>{t.ciclo.a.texto}</p>
+          <p class="abc__ex">{t.ciclo.a.ejemplo}</p>
+        </div>
+        <div class="abc__card">
+          <span class="hxb hx-blue" aria-hidden="true">B</span>
+          <h3>{t.ciclo.b.titulo}</h3>
+          <p>{t.ciclo.b.texto}</p>
+          <p class="abc__ex">{t.ciclo.b.ejemplo}</p>
+        </div>
+        <div class="abc__card">
+          <span class="hxb hx-yellow" aria-hidden="true">C</span>
+          <h3>{t.ciclo.c.titulo}</h3>
+          <p><strong>A corto plazo:</strong> {t.ciclo.c.corto}</p>
+          <p><strong>A largo plazo:</strong> {t.ciclo.c.largo}</p>
+          <p class="abc__ex abc__ex--cream">{t.ciclo.c.cierre}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-white" id="como">
+    <div class="wrap stack stack--lg">
+      <div class="sec__head" data-reveal>
+        <p class="kicker">Cómo trabajamos</p>
+        <h2 class="h2 h2--xl">{t.como.titulo}</h2>
+        <p class="txt">{t.como.intro} <a href="/enfoques">Conoce los enfoques</a></p>
+      </div>
+      <div class="cards" data-reveal-group>
+        {
+          t.como.pasos.map((p, i) => (
+            <article class="pcard">
+              <span class:list={['hxb', 'hxb--sm', colores[i % colores.length]]} aria-hidden="true">{i + 1}</span>
+              <h3>{p.titulo}</h3>
+              <p>{p.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--sm bg-navy">
+    <div class="wrap callout" data-reveal>
+      <span class="hxb hxb--lg hx-yellow" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 11c0 5.65-7 10-7 10Z"></path></svg>
+      </span>
+      <div>
+        <p class="kicker kicker--light">Lo que no vamos a hacer</p>
+        <h2 class="h2 h2--xl h2--light">{t.noHaremos.titulo}</h2>
+        <p class="txt txt--light">{t.noHaremos.texto}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec bg-tint" id="preguntas">
+    <div class="wrap split">
+      <div class="sec__head" data-reveal>
+        <span class="hxb hx-blue" aria-hidden="true"></span>
+        <h2 class="h2 h2--xl">{t.faqTitulo}</h2>
+        <p class="txt">Presencial en Irpavi, La Paz, u online. <a href="/tarifas">Ver tarifas</a> · <a href="/preguntas-frecuentes">Más preguntas</a></p>
+      </div>
+      <div class="split__wide stack">
+        <Faq items={t.faq} variant="blue" />
+        <div class="note" data-reveal>
+          <span class="hexdot hexdot--blue hexdot--lg" aria-hidden="true"></span>
+          <p>
+            <strong>Si estás en crisis:</strong> esto no es un servicio de emergencias. Si estás en riesgo, acude al servicio de emergencias más
+            cercano o pide ayuda a alguien de confianza ahora. <a href="/contacto">Ver contacto</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--sm bg-white">
+    <div class="wrap">
+      <p class="center" data-reveal>
+        <a class="link-arrow" href="/#que-te-trae">Ver las otras áreas en las que acompaño <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+
+  <Cta text="Escríbeme y coordinamos tu primera sesión, presencial en Irpavi u online." message={t.whatsapp} />
+</Base>
