@@ -57,6 +57,7 @@ const consultorio = {
     addressLocality: site.address.city,
     addressCountry: site.address.country,
   },
+  hasMap: site.address.maps,
   areaServed: ['La Paz', 'Bolivia', 'Online'],
   openingHoursSpecification: site.horario.map((h) => ({
     '@type': 'OpeningHoursSpecification',

@@ -53,6 +53,7 @@ import { site, whatsappUrl, waMessages } from '../config/site';
           <Icon name="pin" size={30} />
           <small>Consultorio</small>
           <b>{site.address.full} · {site.address.short}</b>
+          <a class="link-arrow" href={site.address.maps} target="_blank" rel="noopener noreferrer">Cómo llegar <Icon name="arrow" size={18} /></a>
           <small class="mt-sm">Horario · con cita previa, presencial u online</small>
           {site.horario.map((h) => <span>{h.dias}: <b>{h.horas}</b></span>)}
         </div>

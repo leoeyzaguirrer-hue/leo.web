@@ -26,6 +26,8 @@ export const site = {
     full: 'Calle Final Irpavi, Edificio «Palmeras», La Paz',
     city: 'La Paz',
     country: 'BO',
+    // Ficha de Google (Perfil de Negocio): abre el mapa con «Cómo llegar».
+    maps: 'https://share.google/B04FGbytjnijeYzOB',
   },
 
   // Horario de atención (presencial u online, con cita previa). Lo usan Contacto y los datos para Google.
