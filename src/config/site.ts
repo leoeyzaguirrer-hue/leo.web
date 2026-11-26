@@ -27,6 +27,12 @@ export const site = {
     city: 'La Paz',
     country: 'BO',
   },
+
+  // Horario de atención (presencial u online, con cita previa). Lo usan Contacto y los datos para Google.
+  horario: [
+    { dias: 'Lunes, miércoles, jueves y viernes', horas: '9:00 a 19:00', schemaDias: ['Monday', 'Wednesday', 'Thursday', 'Friday'], abre: '09:00', cierra: '19:00' },
+    { dias: 'Martes', horas: '15:00 a 19:00', schemaDias: ['Tuesday'], abre: '15:00', cierra: '19:00' },
+  ],
 } as const;
 
 /** Años de experiencia clínica, calculados al construir el sitio. */
