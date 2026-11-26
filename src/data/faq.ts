@@ -11,6 +11,10 @@ export const primeraSesion: Pregunta[] = [
     a: 'Conversamos sobre lo que te trae, cómo afecta tu día a día y qué te gustaría que cambie. Puede durar un poco más que las demás.',
   },
   {
+    q: '¿Tengo que llenar algo antes de la primera sesión?',
+    a: 'Sí. Cuando confirmamos tu cita, te envío por WhatsApp un formulario con algunos datos básicos y el consentimiento informado, que explica cómo funciona la terapia, la confidencialidad y sus límites. Toma unos 10 minutos. Si algo no te queda claro, lo conversamos antes de empezar.',
+  },
+  {
     q: '¿Tengo que contarlo todo de una vez?',
     a: 'No. Compartes lo que te sientas en condiciones de compartir. Vamos a tu ritmo.',
   },
@@ -67,6 +71,6 @@ export const sesionesYPagos: Pregunta[] = [
   },
   {
     q: '¿Qué es el consentimiento informado?',
-    a: 'Es un documento breve que explica cómo funciona la terapia: sus objetivos, la confidencialidad y sus límites, los honorarios y tus derechos como consultante. Lo revisamos juntos y lo firmas antes de iniciar: es un requisito para comenzar la terapia.',
+    a: 'Es un documento breve que explica cómo funciona la terapia: sus objetivos, la confidencialidad y sus límites, los honorarios y tus derechos como consultante. Cuando confirmamos tu primera cita, te lo envío por WhatsApp junto con un formulario breve de datos. Si algo no te queda claro, lo conversamos antes de empezar. Aceptarlo es un requisito para comenzar la terapia.',
   },
 ];
